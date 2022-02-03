@@ -1,9 +1,9 @@
 var cacheName = 'matchplanner_2';
 var filesToCache = [
-  '/',
-  'index.html',
-  'css/style.css',
-  'js/main.js'
+  '/matchplanner/',
+  '/matchplanner/index.html',
+  '/matchplanner/css/style.css',
+  '/matchplanner/js/main.js'
 ];
 
 /* Start the service worker and cache all of the app's content */
