@@ -188,12 +188,13 @@ function hslToHex(h, s, l) {
   // Draw to the canvas
   function renderCanvas() {
     if (drawing) {
-      ctx.moveTo(lastPos.x, lastPos.y);
-      ctx.lineTo(mousePos.x, mousePos.y);
+      ctx.beginPath();
       ctx.lineCap = 'round';
       ctx.strokeStyle = hslToHex(h.value,s.value,v.value);
       ctx.lineWidth = lineWidth.value;
       if (chaos.checked) randCool();
+      ctx.moveTo(lastPos.x, lastPos.y);
+      ctx.lineTo(mousePos.x, mousePos.y);
       ctx.stroke();
       lastPos = mousePos;
     }
