@@ -31,7 +31,7 @@ window.onload = () => {
   canvas.addEventListener('touchend', disengage);
 
   canvas.addEventListener("touchmove", function (e) {
-    alert("touch");
+    //alert("touch");
     var touch = e.touches[0];
     var mouseEvent = new MouseEvent("mousemove", {
       clientX: touch.clientX,
