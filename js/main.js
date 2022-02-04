@@ -1,9 +1,9 @@
 window.onload = () => {
   'use strict';
 
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/{repository}/sw.js', {scope: '/{repository}/'});
-  }
+  // if ('serviceWorker' in navigator) {
+    // navigator.serviceWorker.register('/{repository}/sw.js', {scope: '/{repository}/'});
+  // }
 
 var showhide = document.getElementById("showhide");
 var drCbox = document.getElementById("drawingCbox");
