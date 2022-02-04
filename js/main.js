@@ -26,7 +26,7 @@ window.onload = () => {
   document.addEventListener('mousedown', setPosition);
   document.addEventListener('mouseenter', setPosition);
 
-  canvas.addEventListener('touchstart', draw);
+  canvas.addEventListener('touchstart', drawtouch);
   canvas.addEventListener('touchmove', setPosition);
   canvas.addEventListener('touchend', disengage);
 
@@ -63,7 +63,25 @@ window.onload = () => {
   function draw(e) {
     //alert("draw");
     // mouse left button must be pressed
-    //if (e.buttons !== 1) return;
+    if (e.buttons !== 1) return;
+
+    ctx.beginPath(); // begin
+
+    ctx.lineWidth = 5;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = '#c0392b';
+
+    ctx.moveTo(pos.x, pos.y); // from
+    setPosition(e);
+    ctx.lineTo(pos.x, pos.y); // to
+
+    ctx.stroke(); // draw it!
+  }
+
+  function drawtouch(e) {
+    //alert("draw");
+    // mouse left button must be pressed
+    if (e.buttons !== 1) return;
 
     ctx.beginPath(); // begin
 
