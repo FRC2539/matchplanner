@@ -190,7 +190,10 @@ function hslToHex(h, s, l) {
     if (drawing) {
       ctx.moveTo(lastPos.x, lastPos.y);
       ctx.lineTo(mousePos.x, mousePos.y);
-      ctx.lineWidth = 15;
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = hslToHex(h.value,s.value,v.value);
+      ctx.lineWidth = lineWidth.value;
+      if (chaos.checked) randCool();
       ctx.stroke();
       lastPos = mousePos;
     }
