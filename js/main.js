@@ -2,7 +2,7 @@ window.onload = () => {
   'use strict';
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/matchplanner/sw.js');
+    navigator.serviceWorker.register('./matchplanner/sw.js');
   }
 
 var showhide = document.getElementById("showhide");
