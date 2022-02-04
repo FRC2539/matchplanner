@@ -6,18 +6,6 @@ window.onload = () => {
       .register('./sw.js');
   }
 
-  // Get a regular interval for drawing to the screen
-  window.requestAnimFrame = (function (callback) {
-    return window.requestAnimationFrame ||
-      window.webkitRequestAnimationFrame ||
-      window.mozRequestAnimationFrame ||
-      window.oRequestAnimationFrame ||
-      window.msRequestAnimaitonFrame ||
-      function (callback) {
-        window.setTimeout(callback, 1000 / 60);
-      };
-  })();
-
   // create canvas element and append it to document body
   var canvas = document.createElement('canvas');
   document.body.appendChild(canvas);
@@ -37,6 +25,16 @@ window.onload = () => {
     ctx.canvas.height = window.innerHeight;
   }
 
+  window.requestAnimFrame = (function (callback) {
+    return window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.oRequestAnimationFrame ||
+      window.msRequestAnimaitonFrame ||
+      function (callback) {
+        window.setTimeout(callback, 1000 / 60);
+      };
+  })();
 
   // Set up mouse events for drawing
   var drawing = false;
@@ -54,6 +52,7 @@ window.onload = () => {
   }, false);
 
   // Set up touch events for mobile, etc
+
   canvas.addEventListener("touchstart", function (e) {
     mousePos = getTouchPos(canvas, e);
     var touch = e.touches[0];
@@ -121,6 +120,7 @@ window.onload = () => {
     }
   }
 
+  // Clear the canvas
   function clearCanvas() {
     canvas.width = canvas.width;
   }
