@@ -61,11 +61,11 @@ window.onload = () => {
       clientY: touch.clientY
     });
     canvas.dispatchEvent(mouseEvent);
-  }, false);
+  }, { passive: false });
   canvas.addEventListener("touchend", function (e) {
     var mouseEvent = new MouseEvent("mouseup", {});
     canvas.dispatchEvent(mouseEvent);
-  }, false);
+  }, { passive: false });
   canvas.addEventListener("touchmove", function (e) {
     var touch = e.touches[0];
     var mouseEvent = new MouseEvent("mousemove", {
@@ -73,24 +73,24 @@ window.onload = () => {
       clientY: touch.clientY
     });
     canvas.dispatchEvent(mouseEvent);
-  }, false);
+  }, { passive: false });
 
   // Prevent scrolling when touching the canvas
   document.body.addEventListener("touchstart", function (e) {
     if (e.target == canvas) {
       e.preventDefault();
     }
-  }, false);
+  }, { passive: false });
   document.body.addEventListener("touchend", function (e) {
     if (e.target == canvas) {
       e.preventDefault();
     }
-  }, false);
+  }, { passive: false });
   document.body.addEventListener("touchmove", function (e) {
     if (e.target == canvas) {
       e.preventDefault();
     }
-  }, false);
+  }, { passive: false });
 
   // Get the position of the mouse relative to the canvas
   function getMousePos(canvasDom, mouseEvent) {
