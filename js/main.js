@@ -30,8 +30,19 @@ window.onload = () => {
   canvas.addEventListener('touchmove', setPosition);
   canvas.addEventListener('touchend', disengage);
 
+  canvas.addEventListener("touchmove", function (e) {
+    var touch = e.touches[0];
+    var mouseEvent = new MouseEvent("mousemove", {
+      clientX: touch.clientX,
+      clientY: touch.clientY
+    });
+    canvas.dispatchEvent(mouseEvent);
+  }, false);
+
   // new position from mouse event
   function setPosition(e) {
+    e.preventDefault();
+    e.stopPropagation();
     pos.x = e.clientX;
     pos.y = e.clientY;
   }
