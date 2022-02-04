@@ -16,8 +16,19 @@
   <meta name="msapplication-TileColor" content="#FFFFFF">
 </head>
 <body class="fullscreen">
-  <div class="container">
-    <h1 class="title">Draw Stuff</h1>
+  <div style="margin:5px; position: fixed;"><input type="button" value="Hide sidebar" id="showhide"></div>
+  <div class="slidecontainer" id="sidebar" style="width: 20%; background-color:dimgrey; padding:.5%; padding-top:20px;">
+    <div style="margin-top:2%; width:100%;"><label for="drawingCbox">Drawing:</label><input type="checkbox" id="drawingCbox" checked></div>
+    <div style="margin-top:2%; width:100%;"><label for="thickSlider">Thickness:</label><input type="range" min="1" max="50" value="5" class="slider" id="thickSlider"></div>
+    <div style="margin-top:2%; width:100%;"><label for="hueSlider">Hue:</label><input type="range" min="1" max="360" value="25" class="slider" id="hueSlider"></div>
+    <div style="margin-top:2%; width:100%;"><label for="satSlider">Saturation:</label><input type="range" min="1" max="100" value="100" class="slider" id="satSlider"></div>
+    <div style="margin-top:2%; width:100%;"><label for="valSlider">Value:</label><input type="range" min="1" max="50" value="50" class="slider" id="valSlider"></div>
+    <div style="margin-top:2%; width:100%;"><input type="button" value="Random color!" id="randcol"> <label for="chaos">Chaos Mode:</label><input type="checkbox" id="chaos"></div>
+  </div>
+  <div style="width: 80%;" id="coolestdivever">
+    <div class="container">
+      <h1 style="position:absolute; text-align: center; top: 45%; width:80%;">Draw Stuffs!</h1>
+    </div>
   </div>
   <script src="js/main.js"></script>
 </body>
