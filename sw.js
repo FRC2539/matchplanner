@@ -3,10 +3,10 @@ var APP_PREFIX = 'matchplanner_0.1'     // Identifier for this app (this needs t
 var VERSION = 'v0.1'              // Version of the off-line cache (change this value everytime you want to update cache)
 var CACHE_NAME = APP_PREFIX + VERSION
 var filesToCache = [
-  '/{repository}/',
-  '/{repository}/index.html',
-  '/{repository}/css/style.css',
-  '/{repository}/js/main.js'
+  './',
+  './index.html',
+  './css/style.css',
+  './js/main.js'
 ];
 
 /* Start the service worker and cache all of the app's content */
