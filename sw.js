@@ -1,15 +1,15 @@
 var cacheName = 'matchplanner_2';
 var filesToCache = [
-  '/matchplanner/',
-  '/matchplanner/index.html',
-  '/matchplanner/css/style.css',
-  '/matchplanner/js/main.js'
+  './',
+  './index.html',
+  './css/style.css',
+  './js/main.js'
 ];
 
 /* Start the service worker and cache all of the app's content */
-self.addEventListener('install', function(e) {
+self.addEventListener('install', function (e) {
   e.waitUntil(
-    caches.open(cacheName).then(function(cache) {
+    caches.open(cacheName).then(function (cache) {
       return cache.addAll(filesToCache);
     })
   );
@@ -27,8 +27,8 @@ self.addEventListener('install', function(e) {
 
 self.addEventListener('fetch', function (event) {
   event.respondWith(
-      fetch(event.request).catch(function() {
-          return caches.match(event.request)
-      })
+    fetch(event.request).catch(function () {
+      return caches.match(event.request)
+    })
   )
 })
