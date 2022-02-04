@@ -1,4 +1,4 @@
-var cacheName = 'matchplanner_2';
+var cacheName = 'matchplanner_3';
 var filesToCache = [
   './',
   './index.html',
