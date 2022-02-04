@@ -22,9 +22,9 @@ window.onload = () => {
   var pos = { x: 0, y: 0 };
 
   window.addEventListener('resize', resize);
-  //document.addEventListener('mousemove', draw);
-  //document.addEventListener('mousedown', setPosition);
-  //document.addEventListener('mouseenter', setPosition);
+  document.addEventListener('mousemove', draw);
+  document.addEventListener('mousedown', setPosition);
+  document.addEventListener('mouseenter', setPosition);
 
   canvas.addEventListener('touchstart', draw);
   canvas.addEventListener('touchmove', setPosition);
@@ -42,7 +42,7 @@ window.onload = () => {
 
   // new position from mouse event
   function setPosition(e) {
-    alert("touch-pos")
+    //alert("touch-pos")
     e.preventDefault();
     e.stopPropagation();
     pos.x = e.clientX;
@@ -61,7 +61,7 @@ window.onload = () => {
   }
 
   function draw(e) {
-    alert("draw");
+    //alert("draw");
     // mouse left button must be pressed
     //if (e.buttons !== 1) return;
 
