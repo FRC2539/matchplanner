@@ -6,73 +6,75 @@ window.onload = () => {
       .register('./sw.js');
   }
 
-
-
-  document.ontouchmove = function (e) { e.preventDefault(); }
-
   // create canvas element and append it to document body
   var canvas = document.createElement('canvas');
   document.body.appendChild(canvas);
-  var canvastop = canvas.offsetTop
 
-  var context = canvas.getContext("2d");
+  // some hotfixes... ( ≖_≖)
+  document.body.style.margin = 0;
+  canvas.style.position = 'fixed';
 
-  var lastx;
-  var lasty;
+  // get canvas 2D context and set him correct size
+  var ctx = canvas.getContext('2d');
+  resize();
 
-  context.strokeStyle = "#000000";
-  context.lineCap = 'round';
-  context.lineJoin = 'round';
-  context.lineWidth = 5;
+  // last known position
+  var pos = { x: 0, y: 0 };
 
-  function clear() {
-    context.fillStyle = "#ffffff";
-    context.rect(0, 0, 300, 300);
-    context.fill();
+  window.addEventListener('resize', resize);
+  //document.addEventListener('mousemove', draw);
+  //document.addEventListener('mousedown', setPosition);
+  //document.addEventListener('mouseenter', setPosition);
+
+  canvas.addEventListener('touchstart', draw);
+  canvas.addEventListener('touchmove', setPosition);
+  canvas.addEventListener('touchend', disengage);
+
+  canvas.addEventListener("touchmove", function (e) {
+    alert("touch");
+    var touch = e.touches[0];
+    var mouseEvent = new MouseEvent("mousemove", {
+      clientX: touch.clientX,
+      clientY: touch.clientY
+    });
+    canvas.dispatchEvent(mouseEvent);
+  }, false);
+
+  // new position from mouse event
+  function setPosition(e) {
+    alert("touch-pos")
+    e.preventDefault();
+    e.stopPropagation();
+    pos.x = e.clientX;
+    pos.y = e.clientY;
   }
 
-  function dot(x, y) {
+  // resize canvas
+  function resize() {
+    ctx.canvas.width = window.innerWidth;
+    ctx.canvas.height = window.innerHeight;
+  }
+
+  function disengage() {
+    dragging = false;
     context.beginPath();
-    context.fillStyle = "#000000";
-    context.arc(x, y, 1, 0, Math.PI * 2, true);
-    context.fill();
-    context.stroke();
-    context.closePath();
   }
 
-  function line(fromx, fromy, tox, toy) {
-    context.beginPath();
-    context.moveTo(fromx, fromy);
-    context.lineTo(tox, toy);
-    context.stroke();
-    context.closePath();
+  function draw(e) {
+    alert("draw");
+    // mouse left button must be pressed
+    //if (e.buttons !== 1) return;
+
+    ctx.beginPath(); // begin
+
+    ctx.lineWidth = 5;
+    ctx.lineCap = 'round';
+    ctx.strokeStyle = '#c0392b';
+
+    ctx.moveTo(pos.x, pos.y); // from
+    setPosition(e);
+    ctx.lineTo(pos.x, pos.y); // to
+
+    ctx.stroke(); // draw it!
   }
-
-  canvas.ontouchstart = function (event) {
-    event.preventDefault();
-
-    lastx = event.touches[0].clientX;
-    lasty = event.touches[0].clientY - canvastop;
-
-    dot(lastx, lasty);
-  }
-
-  canvas.ontouchmove = function (event) {
-    event.preventDefault();
-
-    var newx = event.touches[0].clientX;
-    var newy = event.touches[0].clientY - canvastop;
-
-    line(lastx, lasty, newx, newy);
-
-    lastx = newx;
-    lasty = newy;
-  }
-
-
-  var clearButton = document.getElementById('clear')
-  clearButton.onclick = clear
-
-  clear()
-
 }
