@@ -115,6 +115,7 @@ window.onload = () => {
     if (drawing) {
       ctx.moveTo(lastPos.x, lastPos.y);
       ctx.lineTo(mousePos.x, mousePos.y);
+      ctx.lineWidth = 15;
       ctx.stroke();
       lastPos = mousePos;
     }
