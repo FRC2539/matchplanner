@@ -1,35 +1,25 @@
 {
-  "name": "FRC 2539 Match Planner 1",
+  "name": "FRC 2539 Match Planner",
   "short_name": "Match Planner",
   "icons": [
     {
-      "src": "images/Icon-128.png",
+      "src": "images/icon192x192.png",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "images/Icon-144.png",
+      "src": "images/icon256x256.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "images/Icon-152.png",
+      "src": "images/icon384x384.png",
       "sizes": "152x152",
       "type": "image/png"
     },
     {
-      "src": "images/Icon-196.png",
+      "src": "images/icon512x512.png",
       "sizes": "196x196",
-      "type": "image/png"
-    },
-    {
-      "src": "images/Icon-256.png",
-      "sizes": "256x256",
-      "type": "image/png"
-    },
-    {
-      "src": "images/Icon-512.png",
-      "sizes": "512x512",
       "type": "image/png"
     }
   ],

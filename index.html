@@ -8,13 +8,13 @@
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" href="images/Icon-152.png">
+  <link rel="apple-touch-icon" href="images/icon-192x192.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="white" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Hello World">
-  <meta name="msapplication-TileImage" content="images/Icon-144.png">
+  <meta name="msapplication-TileImage" content="images/icon192x192.png">
   <meta name="msapplication-TileColor" content="#FFFFFF">
 </head>
 
@@ -22,15 +22,24 @@
 
   <div style="margin:5px; position: fixed;"><input type="button" value="Hide sidebar" id="showhide"></div>
   <div class="slidecontainer" id="sidebar" style="width: 20%; background-color:dimgrey; padding:.5%; padding-top:20px;">
-    <div style="margin-top:2%; width:100%;"><label for="drawingCbox">Drawing:</label><input type="checkbox" class="checkbox" id="drawingCbox" checked></div>
-    <div style="margin-top:2%; width:100%;"><label for="thickSlider">Thickness:</label><input type="range" min="1" max="50" value="5" class="slider" id="thickSlider"></div>
-    <div style="margin-top:2%; width:100%;"><label for="hueSlider">Hue:</label><input type="range" min="1" max="360" value="25" class="slider" id="hueSlider"></div>
-    <div style="margin-top:2%; width:100%;"><label for="satSlider">Saturation:</label><input type="range" min="1" max="100" value="100" class="slider" id="satSlider"></div>
-    <div style="margin-top:2%; width:100%;"><label for="valSlider">Value:</label><input type="range" min="1" max="50" value="50" class="slider" id="valSlider"></div>
-    <div style="margin-top:2%; width:100%;"><label for="alphaSlider">Alpha:</label><input type="range" min="1" max="100" value="100" class="slider" id="alphaSlider"></div>
-    <div style="margin-top:2%; width:100%;"><input type="button" value="Red Color" id="redb" style="width:48%;"> <input type="button" value="Blue Color" id="blueb" style="width:48%;"></div>
-    <div style="margin-top:2%; width:100%;"><input type="button" value="Random Color!" id="randcol" style="width:48%;"> <input type="button" value="Clear Canvas" id="clearer" style="width:48%;"></div>
-    <div style="margin-top:2%; width:100%;"><label for="chaos">Chaos Mode:</label><input type="checkbox" class="checkbox" id="chaos"></div>
+    <div style="margin-top:2%; width:100%;"><label for="drawingCbox">Drawing:</label><input type="checkbox"
+        class="checkbox" id="drawingCbox" checked></div>
+    <div style="margin-top:2%; width:100%;"><label for="thickSlider">Thickness:</label><input type="range" min="1"
+        max="50" value="5" class="slider" id="thickSlider"></div>
+    <div style="margin-top:2%; width:100%;"><label for="hueSlider">Hue:</label><input type="range" min="1" max="360"
+        value="25" class="slider" id="hueSlider"></div>
+    <div style="margin-top:2%; width:100%;"><label for="satSlider">Saturation:</label><input type="range" min="1"
+        max="100" value="100" class="slider" id="satSlider"></div>
+    <div style="margin-top:2%; width:100%;"><label for="valSlider">Value:</label><input type="range" min="1" max="50"
+        value="50" class="slider" id="valSlider"></div>
+    <div style="margin-top:2%; width:100%;"><label for="alphaSlider">Alpha:</label><input type="range" min="1" max="100"
+        value="100" class="slider" id="alphaSlider"></div>
+    <div style="margin-top:2%; width:100%;"><input type="button" value="Red Color" id="redb" style="width:48%;"> <input
+        type="button" value="Blue Color" id="blueb" style="width:48%;"></div>
+    <div style="margin-top:2%; width:100%;"><input type="button" value="Random Color!" id="randcol" style="width:48%;">
+      <input type="button" value="Clear Canvas" id="clearer" style="width:48%;"></div>
+    <div style="margin-top:2%; width:100%;"><label for="chaos">Chaos Mode:</label><input type="checkbox"
+        class="checkbox" id="chaos"></div>
   </div>
   <div style="width: 80%;" id="coolestdivever">
     <div class="container">
@@ -38,12 +47,12 @@
     </div>
 
   </div>
-    <script>
-  // register ServiceWorker, remember to use absolute path!
-  if (navigator.serviceWorker) {
-    navigator.serviceWorker.register('./sw.js')
-  }
-  
+  <script>
+    // register ServiceWorker, remember to use absolute path!
+    if (navigator.serviceWorker) {
+      navigator.serviceWorker.register('./sw.js')
+    }
+
   // --- Application code here ---
   </script>
   <script src="./js/main.js"></script>
