@@ -1,4 +1,4 @@
-window.onload = ()) => {
+window.onload = () => {
   'use strict';
 
   // if ('serviceWorker' in navigator) {
@@ -15,7 +15,7 @@ var v = document.getElementById("valSlider");
 var alpha = document.getElementById("alphaSlider");
 var randcol = document.getElementById("randcol");
 var chaos = document.getElementById("chaos");
-var clearer = document.getElementById("clearer");
+var teamnum = document.getElementById("teamnhumber");
 
   // create canvas element and append it to document body
 
@@ -195,7 +195,6 @@ function drawLine(xPos,yPos,col,thic,alph,doNotSave) {
   if (!doNotSave) {
     var offset = (showhide.value == "Hide sidebar" ? [ctx.canvas.width*0.25,30] : [0,0]);
     drawPoints.push([xPos + offset[0],yPos - offset[1],col,thic,alph]);
-    console.log(xPos,yPos,offset);
   };
 }
 
@@ -213,7 +212,7 @@ function clearCanvas() {
   drawPoints = [];
 }
 
-clearer.addEventListener('click',clearCanvas);
+document.getElementById("clearD").addEventListener('click',clearCanvas);
 
 document.getElementById("redb").addEventListener('click',function(){h.value = 358; s.value = 82; v.value = 100});
 document.getElementById("blueb").addEventListener('click',function(){h.value = 206; s.value = 100; v.value = 70});
@@ -223,5 +222,48 @@ document.getElementById("blueb").addEventListener('click',function(){h.value = 2
   requestAnimFrame(drawLoop);
   renderCanvas();
 })();
+
+////// ROBOT STUFF STARTS HERE //////
+
+var robots = []
+function addRobot(color) {
+  var div = document.createElement('div');
+  div.style = "padding: 10px; cursor: move; z-index: 500000000; width:90px; height:90px; position:fixed; display:block; user-select:none;"
+  document.getElementById("coolestdivever").insertBefore(div,canvas);
+
+  var img = document.createElement('img');
+  img.src = "images/" + color + "bot.png"
+  img.style = "width:100%; height:100%; user-select:none;"
+  img.draggable = false
+  div.appendChild(img);
+
+  var h3 = document.createElement('h3');
+  h3.style = "width:100%; height:30%; position:absolute; display:block; top:47%; left:0%; text-align:center; color:white;"
+  h3.textContent = teamnum.value;
+  div.appendChild(h3);
+  div.addEventListener('mousedown',function(e){
+    var offX = e.offsetX;
+    var offY = e.offsetY;
+    function mousey(e) {
+      div.style.top = e.clientY - offY + "px"
+      div.style.left = e.clientX - offX + "px"
+    }
+    document.addEventListener('mousemove',mousey)
+    function mouseupfunction() {
+      document.removeEventListener('mousemove',mousey)
+      document.removeEventListener('mouseup',mouseupfunction)
+    }
+    document.addEventListener('mouseup',mouseupfunction)
+  })
+  robots.push(div)
+}
+
+document.getElementById("roboR").addEventListener('click',function(){addRobot('red')})
+document.getElementById("roboB").addEventListener('click',function(){addRobot('blue')})
+document.getElementById("clearR").addEventListener('click',function(){
+  robots.forEach(function(div){
+    div.remove()
+  })
+});
 
 }

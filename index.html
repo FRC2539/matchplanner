@@ -28,12 +28,14 @@
     <div style="margin-top:2%; width:100%;"><label for="satSlider">Saturation:</label><input type="range" min="1" max="100" value="100" class="slider" id="satSlider"></div>
     <div style="margin-top:2%; width:100%;"><label for="valSlider">Value:</label><input type="range" min="1" max="50" value="50" class="slider" id="valSlider"></div>
     <div style="margin-top:2%; width:100%;"><label for="alphaSlider">Alpha:</label><input type="range" min="1" max="100" value="100" class="slider" id="alphaSlider"></div>
-    <div style="margin-top:2%; width:100%;"><input type="button" value="Red Color" id="redb" style="width:48%;"> <input type="button" value="Blue Color" id="blueb" style="width:48%;"></div>
-    <div style="margin-top:2%; width:100%;"><input type="button" value="Random Color!" id="randcol" style="width:48%;"> <input type="button" value="Clear Canvas" id="clearer" style="width:48%;"></div>
+    <div style="margin-top:2%; width:100%;"><input type="button" value="Red Color" id="redb" style="width:31.5%;"> <input type="button" value="Blue Color" id="blueb" style="width:31.5%;"> <input type="button" value="Random Color!" id="randcol" style="width:31.5%;"></div>
+    <div style="margin-top:2%; width:100%;"><label for="chaos">Team Number:</label><input type="text" class="text" id="teamnhumber" value="2539"></div>
+    <div style="margin-top:2%; width:100%;"><input type="button" value="Add Red Robot" id="roboR" style="width:48%;"> <input type="button" value="Add Blue Robot" id="roboB" style="width:48%;"></div>
+    <div style="margin-top:2%; width:100%;"><input type="button" value="Clear Drawings" id="clearD" style="width:48%;"> <input type="button" value="Clear Robots" id="clearR" style="width:48%;"></div>
     <div style="margin-top:2%; width:100%;"><label for="chaos">Chaos Mode:</label><input type="checkbox" class="checkbox" id="chaos"></div>
   </div>
-  <div style="width: 80%;" id="coolestdivever">
-    <div class="container">
+  <div style="width: 80%; height:100%;" id="coolestdivever">
+    <div class="container" id="robotcontaner" style="z-index:5000000000;">
       <!--<h1 style="position:absolute; text-align: center; top: 45%; width:80%;">Draw Stuffs!</h1>-->
     </div>
 
