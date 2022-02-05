@@ -1,9 +1,10 @@
-window.onload = () => {
+window.onload = ()) => {
   'use strict';
 
   // if ('serviceWorker' in navigator) {
     // navigator.serviceWorker.register('/{repository}/sw.js', {scope: '/{repository}/'});
   // }
+  //update
 
 var showhide = document.getElementById("showhide");
 var drCbox = document.getElementById("drawingCbox");
