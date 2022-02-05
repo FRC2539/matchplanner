@@ -54,7 +54,7 @@ function booleansAreAwesome() {
   document.getElementById("sidebar").style.width = val ? "0%" : "20%";
   document.getElementById("coolestdivever").style.width = val ? "100%" : "80%";
   canvas.style.top = val ? "30px" : "0%"
-  resize()
+  //resize()
 }
 
 showhide.addEventListener('click',booleansAreAwesome)
