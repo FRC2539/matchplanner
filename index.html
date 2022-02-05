@@ -8,13 +8,13 @@
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" href="images/Icon-152.png">
+  <link rel="apple-touch-icon" href="images/icon-192x192.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="white" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Hello World">
-  <meta name="msapplication-TileImage" content="images/Icon-144.png">
+  <meta name="msapplication-TileImage" content="images/icon192x192.png">
   <meta name="msapplication-TileColor" content="#FFFFFF">
 </head>
 
@@ -36,16 +36,17 @@
   </div>
   <div style="width: 80%; height:100%;" id="coolestdivever">
     <div class="container" id="robotcontaner" style="z-index:5000000000;">
+      <img src="./images/RapidReactField_sm.png" class="bg" />
       <!--<h1 style="position:absolute; text-align: center; top: 45%; width:80%;">Draw Stuffs!</h1>-->
     </div>
 
   </div>
-    <script>
-  // register ServiceWorker, remember to use absolute path!
-  if (navigator.serviceWorker) {
-    navigator.serviceWorker.register('./sw.js')
-  }
-  
+  <script>
+    // register ServiceWorker, remember to use absolute path!
+    if (navigator.serviceWorker) {
+      navigator.serviceWorker.register('./sw.js')
+    }
+
   // --- Application code here ---
   </script>
   <script src="./js/main.js"></script>
