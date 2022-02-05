@@ -34,6 +34,11 @@ label {
   font-size:larger;
 }
 
+.checkbox {
+  height:20px;
+  width:20px;
+}
+
 /* The slider itself */
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */

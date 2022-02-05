@@ -11,8 +11,10 @@ var lineWidth = document.getElementById("thickSlider");
 var h = document.getElementById("hueSlider");
 var s = document.getElementById("satSlider");
 var v = document.getElementById("valSlider");
+var alpha = document.getElementById("alphaSlider");
 var randcol = document.getElementById("randcol");
 var chaos = document.getElementById("chaos");
+var clearer = document.getElementById("clearer");
 
   // create canvas element and append it to document body
 
@@ -47,6 +49,19 @@ function resize() {
   ctx.canvas.height = window.innerHeight;
 }
 
+// do that but save the canvas
+var drawPoints = [];
+function canvasRetainingResize() {
+  var offset = (showhide.value == "Hide sidebar" ? .8 : 1);
+  var lastSize = [ctx.canvas.width, ctx.canvas.height]
+  ctx.canvas.width = window.innerWidth*offset;
+  ctx.canvas.height = window.innerHeight;
+  drawPoints.forEach(function(lineData,index){
+    if (index == 0) lastPos = [lineData[0] - ctx.canvas.width*1.25*(1-offset),lineData[1] + (30*(1-offset)*5)];
+    drawLine(lineData[0] - ctx.canvas.width*1.25*(1-offset), lineData[1] + (30*(1-offset)*5), lineData[2], lineData[3], lineData[4], true);
+  })
+}
+
 function booleansAreAwesome() {
   var val = showhide.value == "Hide sidebar"
   showhide.value = val ? "Show sidebar" : "Hide sidebar"
@@ -54,16 +69,18 @@ function booleansAreAwesome() {
   document.getElementById("sidebar").style.width = val ? "0%" : "20%";
   document.getElementById("coolestdivever").style.width = val ? "100%" : "80%";
   canvas.style.top = val ? "30px" : "0%"
-  //resize()
+  canvasRetainingResize()
 }
 
+booleansAreAwesome(); // it should be hidden on launch
 showhide.addEventListener('click',booleansAreAwesome)
 
-function randCool() {
-  lineWidth.value = Math.random()*50
+function randCool(chaos) {
+  lineWidth.value = chaos == "CHAOS" ? Math.random()*50 : lineWidth.value
   h.value = Math.random()*360
   s.value = Math.random()*100
-  v.value = Math.random()*100
+  v.value = Math.random()*50
+  alpha.value = chaos == "CHAOS" ? Math.random()*100 : alpha.value
 }
 
 randcol.addEventListener('click',randCool)
@@ -78,137 +95,132 @@ function hslToHex(h, s, l) {
   };
   return `#${f(0)}${f(8)}${f(4)}`;
 }
-
-// function draw(e) {
-//   // mouse left button must be pressed
-//   if (e.buttons !== 1) return;
-//   if (!drCbox.checked) return;
-
-//   ctx.beginPath(); // begin
-
-//   ctx.lineWidth = lineWidth.value;
-//   ctx.lineCap = 'round';
-//   ctx.strokeStyle = hslToHex(h.value,s.value,v.value);
-
-//   ctx.moveTo(pos.x, pos.y); // from
-//   setPosition(e);
-//   ctx.lineTo(pos.x, pos.y); // to
-
-//   ctx.stroke(); // draw it!
-
-//   if (chaos.checked) randCool();
-// }
  
-
-  window.requestAnimFrame = (function (callback) {
-    return window.requestAnimationFrame ||
-      window.webkitRequestAnimationFrame ||
-      window.mozRequestAnimationFrame ||
-      window.oRequestAnimationFrame ||
-      window.msRequestAnimaitonFrame ||
-      function (callback) {
-        window.setTimeout(callback, 1000 / 60);
-      };
-  })();
-
-  // Set up mouse events for drawing
-  var drawing = false;
-  var mousePos = { x: 0, y: 0 };
-  var lastPos = mousePos;
-  canvas.addEventListener("mousedown", function (e) {
-    drawing = true;
-    lastPos = getMousePos(canvas, e);
-  }, false);
-  canvas.addEventListener("mouseup", function (e) {
-    drawing = false;
-  }, false);
-  canvas.addEventListener("mousemove", function (e) {
-    mousePos = getMousePos(canvas, e);
-  }, false);
-
-  // Set up touch events for mobile, etc
-
-  canvas.addEventListener("touchstart", function (e) {
-    mousePos = getTouchPos(canvas, e);
-    var touch = e.touches[0];
-    var mouseEvent = new MouseEvent("mousedown", {
-      clientX: touch.clientX,
-      clientY: touch.clientY
-    });
-    canvas.dispatchEvent(mouseEvent);
-  }, { passive: false });
-  canvas.addEventListener("touchend", function (e) {
-    var mouseEvent = new MouseEvent("mouseup", {});
-    canvas.dispatchEvent(mouseEvent);
-  }, { passive: false });
-  canvas.addEventListener("touchmove", function (e) {
-    var touch = e.touches[0];
-    var mouseEvent = new MouseEvent("mousemove", {
-      clientX: touch.clientX,
-      clientY: touch.clientY
-    });
-    canvas.dispatchEvent(mouseEvent);
-  }, { passive: false });
-
-  // Prevent scrolling when touching the canvas
-  document.body.addEventListener("touchstart", function (e) {
-    if (e.target == canvas) {
-      e.preventDefault();
-    }
-  }, { passive: false });
-  document.body.addEventListener("touchend", function (e) {
-    if (e.target == canvas) {
-      e.preventDefault();
-    }
-  }, { passive: false });
-  document.body.addEventListener("touchmove", function (e) {
-    if (e.target == canvas) {
-      e.preventDefault();
-    }
-  }, { passive: false });
-
-  // Get the position of the mouse relative to the canvas
-  function getMousePos(canvasDom, mouseEvent) {
-    var rect = canvasDom.getBoundingClientRect();
-    return {
-      x: mouseEvent.clientX - rect.left,
-      y: mouseEvent.clientY - rect.top
+window.requestAnimFrame = (function (callback) {
+  return window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.oRequestAnimationFrame ||
+    window.msRequestAnimaitonFrame ||
+    function (callback) {
+      window.setTimeout(callback, 1000 / 60);
     };
-  }
+})();
 
-  // Get the position of a touch relative to the canvas
-  function getTouchPos(canvasDom, touchEvent) {
-    var rect = canvasDom.getBoundingClientRect();
-    return {
-      x: touchEvent.touches[0].clientX - rect.left,
-      y: touchEvent.touches[0].clientY - rect.top
-    };
-  }
+// Set up mouse events for drawing
+var drawing = false;
+var mousePos = { x: 0, y: 0 };
+var lastPos = mousePos;
+canvas.addEventListener("mousedown", function (e) {
+  drawing = true;
+  lastPos = getMousePos(canvas, e);
+}, false);
+canvas.addEventListener("mouseup", function (e) {
+  drawing = false;
+}, false);
+canvas.addEventListener("mousemove", function (e) {
+  mousePos = getMousePos(canvas, e);
+}, false);
 
-  // Draw to the canvas
-  function renderCanvas() {
-    if (drawing) {
-      ctx.beginPath();
-      ctx.lineCap = 'round';
-      ctx.strokeStyle = hslToHex(h.value,s.value,v.value);
-      ctx.lineWidth = lineWidth.value;
-      if (chaos.checked) randCool();
-      ctx.moveTo(lastPos.x, lastPos.y);
-      ctx.lineTo(mousePos.x, mousePos.y);
-      ctx.stroke();
-      lastPos = mousePos;
-    }
-  }
+// Set up touch events for mobile, etc
 
-  // Clear the canvas
-  function clearCanvas() {
-    canvas.width = canvas.width;
-  }
+canvas.addEventListener("touchstart", function (e) {
+  mousePos = getTouchPos(canvas, e);
+  var touch = e.touches[0];
+  var mouseEvent = new MouseEvent("mousedown", {
+    clientX: touch.clientX,
+    clientY: touch.clientY
+  });
+  canvas.dispatchEvent(mouseEvent);
+}, { passive: false });
+canvas.addEventListener("touchend", function (e) {
+  var mouseEvent = new MouseEvent("mouseup", {});
+  canvas.dispatchEvent(mouseEvent);
+}, { passive: false });
+canvas.addEventListener("touchmove", function (e) {
+  var touch = e.touches[0];
+  var mouseEvent = new MouseEvent("mousemove", {
+    clientX: touch.clientX,
+    clientY: touch.clientY
+  });
+  canvas.dispatchEvent(mouseEvent);
+}, { passive: false });
 
-  // Allow for animation
-  (function drawLoop() {
-    requestAnimFrame(drawLoop);
-    renderCanvas();
-  })();
+// Prevent scrolling when touching the canvas
+document.body.addEventListener("touchstart", function (e) {
+  if (e.target == canvas) {
+    e.preventDefault();
+  }
+}, { passive: false });
+document.body.addEventListener("touchend", function (e) {
+  if (e.target == canvas) {
+    e.preventDefault();
+  }
+}, { passive: false });
+document.body.addEventListener("touchmove", function (e) {
+  if (e.target == canvas) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+// Get the position of the mouse relative to the canvas
+function getMousePos(canvasDom, mouseEvent) {
+  var rect = canvasDom.getBoundingClientRect();
+  return {
+    x: mouseEvent.clientX - rect.left,
+    y: mouseEvent.clientY - rect.top
+  };
+}
+
+// Get the position of a touch relative to the canvas
+function getTouchPos(canvasDom, touchEvent) {
+  var rect = canvasDom.getBoundingClientRect();
+  return {
+    x: touchEvent.touches[0].clientX - rect.left,
+    y: touchEvent.touches[0].clientY - rect.top
+  };
+}
+
+function drawLine(xPos,yPos,col,thic,alph,doNotSave) {
+  ctx.beginPath();
+  ctx.lineCap = 'round';
+  ctx.strokeStyle = col;
+  ctx.lineWidth = thic;
+  ctx.globalAlpha = alph/100;
+  ctx.moveTo(lastPos[0], lastPos[1]);
+  ctx.lineTo(xPos, yPos);
+  ctx.stroke();
+  lastPos = [xPos,yPos];
+  if (!doNotSave) {
+    var offset = (showhide.value == "Hide sidebar" ? [ctx.canvas.width*0.25,30] : [0,0]);
+    drawPoints.push([xPos + offset[0],yPos - offset[1],col,thic,alph]);
+    console.log(xPos,yPos,offset);
+  };
+}
+
+// Draw to the canvas
+function renderCanvas() {
+  if (drawing && drCbox.checked) {
+    if (chaos.checked) randCool("CHAOS");
+    drawLine(mousePos.x, mousePos.y, hslToHex(h.value,s.value,v.value),lineWidth.value,alpha.value);
+  }
+}
+
+// Clear the canvas
+function clearCanvas() {
+  canvas.width = canvas.width;
+  drawPoints = [];
+}
+
+clearer.addEventListener('click',clearCanvas);
+
+document.getElementById("redb").addEventListener('click',function(){h.value = 358; s.value = 82; v.value = 100});
+document.getElementById("blueb").addEventListener('click',function(){h.value = 206; s.value = 100; v.value = 70});
+
+// Allow for animation
+(function drawLoop() {
+  requestAnimFrame(drawLoop);
+  renderCanvas();
+})();
 
 }
