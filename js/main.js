@@ -64,7 +64,8 @@ var teamnum = document.getElementById("teamnhumber");
   // do that but save the canvas
   var drawPoints = [];
   function canvasRetainingResize() {
-    var offset = (showhide.value == "Hide sidebar" ? .8 : 1);
+    //var offset = (showhide.value == "Hide sidebar" ? .8 : 1);
+    var offset = 1;
     var lastSize = [ctx.canvas.width, ctx.canvas.height]
     ctx.canvas.width = window.innerWidth * offset;
     ctx.canvas.height = window.innerHeight;
@@ -80,8 +81,8 @@ var teamnum = document.getElementById("teamnhumber");
     document.getElementById("sidebar").style.visibility = val ? "hidden" : "visible";
     document.getElementById("sidebar").style.display = val ? "none" : "block";
     document.getElementById("sidebar").style.width = val ? "0%" : "20%";
-    document.getElementById("coolestdivever").style.width = val ? "100%" : "80%";
-    canvas.style.top = val ? "30px" : "0%"
+    //document.getElementById("coolestdivever").style.width = val ? "100%" : "80%";
+    //canvas.style.top = val ? "30px" : "0%"
     canvasRetainingResize()
   }
 
