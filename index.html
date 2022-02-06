@@ -15,30 +15,30 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Hello World">
   <link rel="apple-touch-icon" sizes="57x57" href="./images/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="./images/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="./images/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="./images/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="./images/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="./images/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="./images/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="./images/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="./images/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="./images/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="./images/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
-<!-- <link rel="manifest" href="/manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-<meta name="theme-color" content="#ffffff"> -->
-  <meta name="msapplication-TileImage" content="images/icon-192x192.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./images/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./images/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./images/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./images/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./images/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./images/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./images/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="./images/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="./images/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
+  <!-- <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff"> -->
+  <meta name="msapplication-TileImage" content="./images/icon-192x192.png">
   <meta name="msapplication-TileColor" content="#FFFFFF">
 </head>
 
 <body class="fullscreen">
 
   <div style="margin:5px; position: fixed;"><input type="button" value="Hide sidebar" id="showhide"></div>
-  <div class="slidecontainer" id="sidebar" style="width: 20%; background-color:dimgrey; padding:.5%; padding-top:20px; z-index: 100; min-width: 400px;">
+  <div class="slidecontainer" id="sidebar" style="width: 20%; background-color:dimgrey; padding:.5%; padding-top:20px; z-index: 100; min-width: 400px; margin-top:30px; display: none;">
     <div style="margin-top:2%; width:100%;"><label for="drawingCbox">Drawing:</label><input type="checkbox" class="checkbox" id="drawingCbox" checked></div>
     <div style="margin-top:2%; width:100%;"><label for="thickSlider">Thickness:</label><input type="range" min="1" max="50" value="5" class="slider" id="thickSlider"></div>
     <div style="margin-top:2%; width:100%;"><label for="hueSlider">Hue:</label><input type="range" min="1" max="360" value="25" class="slider" id="hueSlider"></div>
@@ -53,7 +53,7 @@
   </div>
   <div style="width: 80%; height:100%;" id="coolestdivever">
     <div class="container" id="robotcontaner" style="z-index:5000000000;">
-      <img src="./images/RapidReactField_sm.png" class="bg" style="z-index: 0;"/>
+      <img src="./images/RapidReactField_sm.png" class="bg" id="bgimg" style="z-index: 0;"/>
       <!--<h1 style="position:absolute; text-align: center; top: 45%; width:80%;">Draw Stuffs!</h1>-->
     </div>
 

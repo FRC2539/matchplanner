@@ -5,7 +5,7 @@ window.onload = () => {
   // navigator.serviceWorker.register('/{repository}/sw.js', {scope: '/{repository}/'});
   // }
   //update
-
+//sidebar
 var showhide = document.getElementById("showhide");
 var drCbox = document.getElementById("drawingCbox");
 var lineWidth = document.getElementById("thickSlider");
@@ -16,6 +16,15 @@ var alpha = document.getElementById("alphaSlider");
 var randcol = document.getElementById("randcol");
 var chaos = document.getElementById("chaos");
 var teamnum = document.getElementById("teamnhumber");
+
+// if (window.innerWidth < window.innerHeight){
+//   console.log("rotate bg");
+//   var bgimg = document.getElementById("bgimg");
+//   bgimg.style.transform = "rotate(90deg)";
+//   bgimg.style.maxWidth = "100%";
+//   bgimg.style.maxHeight = "100%";
+// }
+
 
   // create canvas element and append it to document body
 
@@ -48,6 +57,8 @@ var teamnum = document.getElementById("teamnhumber");
   function resize() {
     ctx.canvas.width = window.innerWidth * (showhide.value == "Hide sidebar" ? .8 : 1);
     ctx.canvas.height = window.innerHeight;
+    
+    
   }
 
   // do that but save the canvas
@@ -67,6 +78,7 @@ var teamnum = document.getElementById("teamnhumber");
     var val = showhide.value == "Hide sidebar"
     showhide.value = val ? "Show sidebar" : "Hide sidebar"
     document.getElementById("sidebar").style.visibility = val ? "hidden" : "visible";
+    document.getElementById("sidebar").style.display = val ? "none" : "block";
     document.getElementById("sidebar").style.width = val ? "0%" : "20%";
     document.getElementById("coolestdivever").style.width = val ? "100%" : "80%";
     canvas.style.top = val ? "30px" : "0%"
