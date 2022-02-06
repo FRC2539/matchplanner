@@ -3,6 +3,11 @@
   "short_name": "Match Planner",
   "icons": [
     {
+      "src": "./images/apple-icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
       "src": "./images/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
