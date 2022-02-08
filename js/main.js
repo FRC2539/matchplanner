@@ -229,8 +229,7 @@ function drawLine(xPos,yPos,col,thic,alph,doNotSave) {
   ctx.stroke();
   lastPos = [xPos,yPos];
   if (!doNotSave) {
-    var offset = (showhide.value == "Hide sidebar" ? [ctx.canvas.width*0.25,30] : [0,0]);
-    drawPoints.push([xPos + offset[0],yPos - offset[1],col,thic,alph]);
+    drawPoints.push([xPos,yPos,col,thic,alph]);
   };
 }
 
