@@ -16,19 +16,22 @@ var alpha = document.getElementById("alphaSlider");
 var randcol = document.getElementById("randcol");
 var chaos = document.getElementById("chaos");
 var teamnum = document.getElementById("teamnhumber");
-var vgimg = document.getElementById("bgimg");
+var bgimg = document.getElementById("bgimg");
+var robots = []
+var robotsize = 90;
 
- if (window.innerWidth < window.innerHeight){
-   bgimg.src = "./images/RapidReactField_sm_portrait.png";
-//   console.log("rotate bg");
-//   var bgimg = document.getElementById("bgimg");
-//   bgimg.style.transform = "rotate(90deg)";
-//   bgimg.style.maxWidth = "100%";
-//   bgimg.style.maxHeight = "100%";
- }else{
-  bgimg.src = "./images/RapidReactField_sm.png";
- }
-
+function scale(e) {
+  if ((e && screen.orientation.type == "portrait-primary") || (!e && window.innerWidth < window.innerHeight)) {
+    bgimg.src = "./images/RapidReactField_sm_portrait.png";
+    bgimg.style.width = "95%"
+  } else {
+    bgimg.src = "./images/RapidReactField_sm.png";
+    bgimg.style.height = "95%"
+  }
+  robots.forEach(function(v){(["width","height"]).forEach(function(x){v.style[x] = robotsize+"px"}); console.log(v.firstChild); v.firstChild.style.fontSize = (robotsize/5)+"px"}) // the line of code designed specifically to confuse you
+}
+scale()
+screen.orientation.addEventListener("change",scale)
 
 // create canvas element and append it to document body
 
@@ -61,8 +64,6 @@ resize();
 function resize() {
   ctx.canvas.width = window.innerWidth * (showhide.value == "Hide sidebar" ? .8 : 1);
   ctx.canvas.height = window.innerHeight;
-  
-  
 }
 
 // do that but save the canvas
@@ -258,11 +259,15 @@ document.getElementById("blueb").addEventListener('click', function () { h.value
 
 ////// ROBOT STUFF STARTS HERE //////
 
-var robots = []
 function addRobot(color) {
   var div = document.createElement('div');
-  div.style = "padding: 10px; cursor: move; z-index: 500000000; width:90px; height:90px; position:fixed; display:block; user-select:none;"
+  div.style = "padding: 10px; cursor: move; z-index: 500000000; width:" + robotsize + "px; height:" + robotsize + "px; position:fixed; display:block; user-select:none; touch-action: none; top:50%; left:50%;"
   document.getElementById("coolestdivever").insertBefore(div,canvas);
+
+  var h3 = document.createElement('h3');
+  h3.style = "width:100%; height:15%; position:absolute; display:block; top:47%; left:0%; text-align:center; color:white; font-size:" + robotsize/5 + "px;"
+  h3.textContent = teamnum.value;
+  div.appendChild(h3);
 
   var img = document.createElement('img');
   img.src = "images/" + color + "bot.png"
@@ -270,58 +275,53 @@ function addRobot(color) {
   img.draggable = false
   div.appendChild(img);
 
-  var h3 = document.createElement('h3');
-  h3.style = "width:100%; height:30%; position:absolute; display:block; top:47%; left:0%; text-align:center; color:white;"
-  h3.textContent = teamnum.value;
-  div.appendChild(h3);
   div.addEventListener('mousedown',function(e){
     var offX = e.offsetX;
     var offY = e.offsetY;
-    //console.log("mousedown x: "+offX)
+
     function mousey(e) {
-      //console.log("movemousedown x: "+offX)
       div.style.top = e.clientY - offY + "px"
       div.style.left = e.clientX - offX + "px"
     }
     document.addEventListener('mousemove',mousey)
+
     function mouseupfunction() {
-      //console.log("mouseup")
       document.removeEventListener('mousemove',mousey)
+      document.removeEventListener('mousemove',touchMoveFunc)
       document.removeEventListener('mouseup',mouseupfunction)
+      document.removeEventListener('mouseup',touchEndFunc)
     }
     document.addEventListener('mouseup',mouseupfunction)
-  
-    // Set up touch events for mobile, etc
 
-    div.addEventListener("touchstart", function (e) {
-      //console.log("touch robot")
-      mousePos = getTouchPos(canvas, e);
-      var touch = e.touches[0];
-      //console.log("touch x: "+touch.clientX+" y: "+touch.clientY)
-      var mouseEvent = new MouseEvent("mousedown", {
-        clientX: touch.clientX,
-        clientY: touch.clientY
-      });
-      div.dispatchEvent(mouseEvent);
-    }, { passive: false });
-    div.addEventListener("touchend", function (e) {
+    // please do not define anonymous functions that dont get removed when they're not needed
+    function touchEndFunc(e) {
       var mouseEvent = new MouseEvent("mouseup", {});
-      div.dispatchEvent(mouseEvent);
-    }, { passive: false });
-    div.addEventListener("touchmove", function (e) {
+      document.dispatchEvent(mouseEvent);
+    }
+    function touchMoveFunc(e) {
       var touch = e.touches[0];
-      //console.log("touchm x: "+touch.clientX+" y: "+touch.clientY)
       var mouseEvent = new MouseEvent("mousemove", {
         clientX: touch.clientX,
         clientY: touch.clientY
       });
-      div.dispatchEvent(mouseEvent);
-    }, { passive: false });
-  
+      document.dispatchEvent(mouseEvent);
+    }
+    document.addEventListener("touchend", touchEndFunc, { passive: false });
+    document.addEventListener("touchmove", touchMoveFunc, { passive: false });
   })
-  robots.push(div)
 
-  
+  div.addEventListener("touchstart", function (e) {
+    console.log("touch robot")
+    mousePos = getTouchPos(canvas, e);
+    var touch = e.touches[0];
+    //console.log("touch x: "+touch.clientX+" y: "+touch.clientY)
+    var mouseEvent = new MouseEvent("mousedown", {
+      clientX: touch.clientX,
+      clientY: touch.clientY
+    });
+    div.dispatchEvent(mouseEvent);
+  }, { passive: false });
+  robots.push(div)
 
 }
 
