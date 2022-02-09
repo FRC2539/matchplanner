@@ -29,13 +29,13 @@ document.getElementById("coolestdivever").appendChild(canvas);
 
 // some hotfixes... ( ≖_≖)
 document.body.style.margin = 0;
-canvas.style.position = 'fixed';
+canvas.style.position = 'fixed'; 
 
 // get canvas 2D context and set him correct size
 var ctx = canvas.getContext('2d');
 resize();
 
-screen.orientation.addEventListener("change",scale)
+//screen.orientation.addEventListener("change",scale)
 
 booleansAreAwesome(); // it should be hidden on launch
 showhide.addEventListener('click', booleansAreAwesome)
