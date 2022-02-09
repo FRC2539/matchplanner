@@ -1,6 +1,5 @@
 window.onload = () => {
   'use strict';
-  alert("load1");
 
   // if ('serviceWorker' in navigator) {
   // navigator.serviceWorker.register('/{repository}/sw.js', {scope: '/{repository}/'});
@@ -31,11 +30,18 @@ document.getElementById("coolestdivever").appendChild(canvas);
 // some hotfixes... ( ≖_≖)
 document.body.style.margin = 0;
 canvas.style.position = 'fixed';
-alert("load2");
+
 // get canvas 2D context and set him correct size
 var ctx = canvas.getContext('2d');
 resize();
-alert("load3");
+
+screen.orientation.addEventListener("change",scale)
+
+booleansAreAwesome(); // it should be hidden on launch
+showhide.addEventListener('click', booleansAreAwesome)
+
+
+
 function scale(e) {
   if ((e && screen.orientation.type == "portrait-primary") || (!e && window.innerWidth < window.innerHeight)) {
     bgimg.src = "./images/RapidReactField_sm_portrait.png";
@@ -47,8 +53,6 @@ function scale(e) {
   robots.forEach(function(v){(["width","height"]).forEach(function(x){v.style[x] = robotsize+"px"}); console.log(v.firstChild); v.firstChild.style.fontSize = (robotsize/5)+"px"}) // the line of code designed specifically to confuse you
 }
 scale()
-screen.orientation.addEventListener("change",scale)
-
 // // last known position
 // var pos = { x: 0, y: 0 };
 // window.addEventListener('resize', resize);
@@ -83,6 +87,7 @@ function canvasRetainingResize() {
 }
 
 function booleansAreAwesome() {
+  alert("bool")
   var val = showhide.value == "Hide sidebar"
   showhide.value = val ? "Show sidebar" : "Hide sidebar"
   document.getElementById("sidebar").style.visibility = val ? "hidden" : "visible";
@@ -93,8 +98,7 @@ function booleansAreAwesome() {
   canvasRetainingResize()
 }
 
-booleansAreAwesome(); // it should be hidden on launch
-showhide.addEventListener('click', booleansAreAwesome)
+
 
 function randCool(chaos) {
   lineWidth.value = chaos == "CHAOS" ? Math.random() * 50 : lineWidth.value
