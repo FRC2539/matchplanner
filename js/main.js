@@ -1,5 +1,6 @@
 window.onload = () => {
   'use strict';
+  alert("load1");
 
   // if ('serviceWorker' in navigator) {
   // navigator.serviceWorker.register('/{repository}/sw.js', {scope: '/{repository}/'});
@@ -30,11 +31,11 @@ document.getElementById("coolestdivever").appendChild(canvas);
 // some hotfixes... ( ≖_≖)
 document.body.style.margin = 0;
 canvas.style.position = 'fixed';
-
+alert("load2");
 // get canvas 2D context and set him correct size
 var ctx = canvas.getContext('2d');
 resize();
-
+alert("load3");
 function scale(e) {
   if ((e && screen.orientation.type == "portrait-primary") || (!e && window.innerWidth < window.innerHeight)) {
     bgimg.src = "./images/RapidReactField_sm_portrait.png";
