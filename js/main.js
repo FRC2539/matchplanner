@@ -87,7 +87,7 @@ function canvasRetainingResize() {
 }
 
 function booleansAreAwesome() {
-  alert("bool")
+  //alert("bool")
   var val = showhide.value == "Hide sidebar"
   showhide.value = val ? "Show sidebar" : "Hide sidebar"
   document.getElementById("sidebar").style.visibility = val ? "hidden" : "visible";
