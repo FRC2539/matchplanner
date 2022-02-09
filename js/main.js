@@ -37,7 +37,7 @@ resize();
 
 
 scale()
-screen.orientation.addEventListener("change",scale)
+//screen.orientation.addEventListener("change",scale)
 
 // // last known position
 // var pos = { x: 0, y: 0 };
