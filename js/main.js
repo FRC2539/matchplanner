@@ -188,6 +188,7 @@ function getMousePos(canvasDom, mouseEvent) {
   return {
     x: mouseEvent.clientX - rect.left,
     y: mouseEvent.clientY - rect.top
+    //yo
   };
 }
 
