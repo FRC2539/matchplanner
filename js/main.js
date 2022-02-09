@@ -37,7 +37,7 @@ resize();
 
 
 scale()
-//screen.orientation.addEventListener("change",scale)
+screen.orientation.addEventListener("change",scale)
 
 // // last known position
 // var pos = { x: 0, y: 0 };
@@ -59,7 +59,8 @@ function resize() {
 }
 
 function scale(e) {
-  if ((e && screen.orientation.type == "portrait-primary") || (!e && window.innerWidth < window.innerHeight)) {
+  //if ((e && screen.orientation.type == "portrait-primary") || (!e && window.innerWidth < window.innerHeight)) {
+  if (( window.innerWidth < window.innerHeight)) {
     bgimg.src = "./images/RapidReactField_sm_portrait.png";
     bgimg.style.width = "95%"
   } else {
