@@ -20,18 +20,7 @@ var bgimg = document.getElementById("bgimg");
 var robots = []
 var robotsize = 90;
 
-function scale(e) {
-  if ((e && screen.orientation.type == "portrait-primary") || (!e && window.innerWidth < window.innerHeight)) {
-    bgimg.src = "./images/RapidReactField_sm_portrait.png";
-    bgimg.style.width = "95%"
-  } else {
-    bgimg.src = "./images/RapidReactField_sm.png";
-    bgimg.style.height = "95%"
-  }
-  robots.forEach(function(v){(["width","height"]).forEach(function(x){v.style[x] = robotsize+"px"}); console.log(v.firstChild); v.firstChild.style.fontSize = (robotsize/5)+"px"}) // the line of code designed specifically to confuse you
-}
-scale()
-screen.orientation.addEventListener("change",scale)
+
 
 // create canvas element and append it to document body
 
@@ -46,6 +35,18 @@ canvas.style.position = 'fixed';
 var ctx = canvas.getContext('2d');
 resize();
 
+function scale(e) {
+  if ((e && screen.orientation.type == "portrait-primary") || (!e && window.innerWidth < window.innerHeight)) {
+    bgimg.src = "./images/RapidReactField_sm_portrait.png";
+    bgimg.style.width = "95%"
+  } else {
+    bgimg.src = "./images/RapidReactField_sm.png";
+    bgimg.style.height = "95%"
+  }
+  robots.forEach(function(v){(["width","height"]).forEach(function(x){v.style[x] = robotsize+"px"}); console.log(v.firstChild); v.firstChild.style.fontSize = (robotsize/5)+"px"}) // the line of code designed specifically to confuse you
+}
+scale()
+screen.orientation.addEventListener("change",scale)
 
 // // last known position
 // var pos = { x: 0, y: 0 };
