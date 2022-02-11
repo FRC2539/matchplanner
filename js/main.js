@@ -20,8 +20,6 @@ var bgimg = document.getElementById("bgimg");
 var robots = []
 var robotsize = 90;
 
-
-
 // create canvas element and append it to document body
 
 var canvas = document.createElement('canvas');
@@ -34,7 +32,6 @@ canvas.style.position = 'fixed';
 // get canvas 2D context and set him correct size
 var ctx = canvas.getContext('2d');
 resize();
-
 
 scale()
 //screen.orientation.addEventListener("change",scale)
@@ -54,7 +51,7 @@ scale()
 
 // resize canvas
 function resize() {
-  ctx.canvas.width = window.innerWidth * (showhide.value == "Hide sidebar" ? .8 : 1);
+  ctx.canvas.width = window.innerWidth * (sidebarShowing ? .8 : 1);
   ctx.canvas.height = window.innerHeight;
 }
 
@@ -75,7 +72,6 @@ var drawPoints = [];
 function canvasRetainingResize() {
   //var offset = (showhide.value == "Hide sidebar" ? .8 : 1);
   var offset = 1;
-  var lastSize = [ctx.canvas.width, ctx.canvas.height]
   ctx.canvas.width = window.innerWidth * offset;
   ctx.canvas.height = window.innerHeight;
   drawPoints.forEach(function (lineData, index) {
@@ -84,19 +80,32 @@ function canvasRetainingResize() {
   })
 }
 
+var sidebarShowing = false;
+function setShowhideColor() {
+  showhide.style.border = "5px solid " + (sidebarShowing ? "black" : "rgb(255,60,0)")
+  showhide.style.backgroundColor = (sidebarShowing ? "rgb(255,170,130)" : "brown")
+}
+
 function booleansAreAwesome() {
-  var val = showhide.value == "Hide sidebar"
-  showhide.value = val ? "Show sidebar" : "Hide sidebar"
+  var val = sidebarShowing
+  sidebarShowing = !sidebarShowing
   document.getElementById("sidebar").style.visibility = val ? "hidden" : "visible";
   document.getElementById("sidebar").style.display = val ? "none" : "block";
   document.getElementById("sidebar").style.width = val ? "0%" : "20%";
+  setShowhideColor()
   //document.getElementById("coolestdivever").style.width = val ? "100%" : "80%";
   //canvas.style.top = val ? "30px" : "0%"
-  canvasRetainingResize()
+  //canvasRetainingResize()
+  if (document.getElementById("theguy")) {document.getElementById("theguy").remove()}
 }
 
-booleansAreAwesome(); // it should be hidden on launch
+//booleansAreAwesome(); // it should be hidden on launch
 showhide.addEventListener('click', booleansAreAwesome)
+showhide.addEventListener('mouseover', function(){
+  showhide.style.border = "8px solid orange"
+  showhide.style.backgroundColor = "brown"
+})
+showhide.addEventListener('mouseout', setShowhideColor)
 
 function randCool(chaos) {
   lineWidth.value = chaos == "CHAOS" ? Math.random() * 50 : lineWidth.value
@@ -263,19 +272,31 @@ document.getElementById("blueb").addEventListener('click', function () { h.value
 
 ////// ROBOT STUFF STARTS HERE //////
 
-function addRobot(color) {
+function addRobot(color,c2) {
+  if (teamnum.value == "macarena" && color == "blue") {
+    teamnum.value = "254"
+    document.getElementById("secretsidebar").style.visibility = "visible"
+    document.getElementById("secretsidebar").style.display = "block"
+    return
+  }
   var div = document.createElement('div');
   div.style = "padding: 10px; cursor: move; z-index: 500000000; width:" + robotsize + "px; height:" + robotsize + "px; position:fixed; display:block; user-select:none; touch-action: none; top:50%; left:50%;"
   document.getElementById("coolestdivever").insertBefore(div,canvas);
 
   var h3 = document.createElement('h3');
-  h3.style = "width:100%; height:15%; position:absolute; display:block; top:47%; left:0%; text-align:center; color:white; font-size:" + robotsize/5 + "px;"
+  h3.style = "width:100%; height:15%; position:absolute; display:block; top:47%; left:0%; text-align:center; color:white; font-size:" + robotsize/5 + "px; z-index:100;"
   h3.textContent = teamnum.value;
   div.appendChild(h3);
 
   var img = document.createElement('img');
-  img.src = "images/" + color + "bot.png"
   img.style = "width:100%; height:100%; user-select:none;"
+  if (color == "red" || color == "blue") {
+    img.src = "images/" + color + "bot.png"
+  } else {
+    console.log(color,c2)
+    img.src = "images/redbot.png"
+    img.style.filter = "hue-rotate("+color+"deg) grayscale("+(100-c2)+"%)"
+  }
   img.draggable = false
   div.appendChild(img);
 
@@ -331,6 +352,8 @@ function addRobot(color) {
 
 document.getElementById("roboR").addEventListener('click',function(){addRobot('red')})
 document.getElementById("roboB").addEventListener('click',function(){addRobot('blue')})
+document.getElementById("roboC").addEventListener('click',function(){addRobot(h.value,s.value)})
+document.getElementById("roboRAND").addEventListener('click',function(){addRobot(Math.random()*360,75+Math.random()*25)})
 document.getElementById("clearR").addEventListener('click',function(){
   robots.forEach(function(div){
     div.remove()

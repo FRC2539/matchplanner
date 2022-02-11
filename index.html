@@ -37,19 +37,25 @@
 
 <body class="fullscreen">
 
-  <div style="margin:5px; position: fixed;z-index:200"><input type="button" value="Hide sidebar" id="showhide"></div>
-  <div class="slidecontainer" id="sidebar" style="width: 20%; background-color:dimgrey; padding:.5%; padding-top:20px; z-index: 100; min-width: 400px; margin-top:30px; display: none;">
+  <div style="margin:5px; position: fixed; z-index:200; bottom:0%;"><img src="./images/sidebar.png" id="showhide"><h3 id="theguy" style="color:rgb(255,60,0); margin:0px;"> - Add robots and change drawing settings here! </h3></div>
+  <div class="slidecontainer" id="sidebar" style="width: 20%; background-color:rgb(73, 30, 30); padding:.5%; padding-top:20px; z-index: 100; min-width: 400px; display: none;">
     <div style="margin-top:2%; width:100%;"><label for="drawingCbox">Drawing:</label><input type="checkbox" class="checkbox" id="drawingCbox" checked></div>
     <div style="margin-top:2%; width:100%;"><label for="thickSlider">Thickness:</label><input type="range" min="1" max="50" value="5" class="slider" id="thickSlider"></div>
-    <div style="margin-top:2%; width:100%;"><label for="hueSlider">Hue:</label><input type="range" min="1" max="360" value="25" class="slider" id="hueSlider"></div>
-    <div style="margin-top:2%; width:100%;"><label for="satSlider">Saturation:</label><input type="range" min="1" max="100" value="100" class="slider" id="satSlider"></div>
-    <div style="margin-top:2%; width:100%;"><label for="valSlider">Value:</label><input type="range" min="1" max="50" value="50" class="slider" id="valSlider"></div>
     <div style="margin-top:2%; width:100%;"><label for="alphaSlider">Alpha:</label><input type="range" min="1" max="100" value="100" class="slider" id="alphaSlider"></div>
-    <div style="margin-top:2%; width:100%;"><input type="button" value="Red Color" id="redb" style="width:31.5%;"> <input type="button" value="Blue Color" id="blueb" style="width:31.5%;"> <input type="button" value="Random Color!" id="randcol" style="width:31.5%;"></div>
+    <div style="margin-top:2%; width:100%;"><input type="button" class="button" value="Red Color" id="redb" style="width:48%;"> <input type="button" class="button" value="Blue Color" id="blueb" style="width:48%;"></div>
     <div style="margin-top:2%; width:100%;"><label for="chaos">Team Number:</label><input type="text" class="text" id="teamnhumber" value="2539"></div>
-    <div style="margin-top:2%; width:100%;"><input type="button" value="Add Red Robot" id="roboR" style="width:48%;"> <input type="button" value="Add Blue Robot" id="roboB" style="width:48%;"></div>
-    <div style="margin-top:2%; width:100%;"><input type="button" value="Clear Drawings" id="clearD" style="width:48%;"> <input type="button" value="Clear Robots" id="clearR" style="width:48%;"></div>
-    <div style="margin-top:2%; width:100%;"><label for="chaos">Chaos Mode:</label><input type="checkbox" class="checkbox" id="chaos"></div>
+    <div style="margin-top:2%; width:100%;"><input type="button" class="button" value="Add Red Robot" id="roboR" style="width:48%;"> <input type="button" class="button" value="Add Blue Robot" id="roboB" style="width:48%;"></div>
+    <div style="margin-top:2%; width:100%;"><input type="button" class="button" value="Clear Drawings" id="clearD" style="width:48%;"> <input type="button" class="button" value="Clear Robots" id="clearR" style="width:48%;"></div>
+    <div class="slidecontainer" id="secretsidebar" style="width: 90%; background-color:rgb(141, 13, 56); padding:5px; z-index: 100; margin:10px; display: none; border-radius:10px;">
+      <h1 style="text-align: center;">The Macarena</h1>
+      <h2 style="text-align: center;">(Fun Stuff)</h2>
+      <div style="margin-top:2%; width:100%;"><input type="button" class="button" value="Random Color!" id="randcol" style="width:100%;"></div>
+      <div style="margin-top:2%; width:100%;"><label for="hueSlider">Hue:</label><input type="range" min="1" max="360" value="25" class="slider" id="hueSlider"></div>
+      <div style="margin-top:2%; width:100%;"><label for="satSlider">Saturation:</label><input type="range" min="1" max="100" value="100" class="slider" id="satSlider"></div>
+      <div style="margin-top:2%; width:100%;"><label for="valSlider">Value:</label><input type="range" min="1" max="50" value="50" class="slider" id="valSlider"></div>
+      <div style="margin-top:2%; width:100%;"><input type="button" class="button" value="Add Custom Robot" id="roboC" style="width:48%;"> <input type="button" class="button" value="Add Random Robot" id="roboRAND" style="width:48%;"></div>
+      <div style="margin-top:2%; width:100%;"><label for="chaos">Crazy Draw:</label><input type="checkbox" class="checkbox" id="chaos"></div>
+    </div>
   </div>
   <div style="width: 100%; height:100%;position:fixed;top:0" id="coolestdivever">
     <div class="container" id="robotcontaner" style="z-index:2000;">
