@@ -83,7 +83,7 @@ function canvasRetainingResize() {
 var sidebarShowing = false;
 function setShowhideColor() {
   showhide.style.border = "5px solid " + (sidebarShowing ? "black" : "rgb(255,60,0)")
-  showhide.style.backgroundColor = (sidebarShowing ? "rgb(255,170,130)" : "brown")
+  showhide.style.backgroundColor = (sidebarShowing ? "rgb(255,170,130)" : "black")
 }
 
 function booleansAreAwesome() {
@@ -273,7 +273,7 @@ document.getElementById("blueb").addEventListener('click', function () { h.value
 ////// ROBOT STUFF STARTS HERE //////
 
 function addRobot(color,c2) {
-  if (teamnum.value == "macarena" && color == "blue") {
+  if (teamnum.value == 11223434567 && color == "blue") {
     teamnum.value = "254"
     document.getElementById("secretsidebar").style.visibility = "visible"
     document.getElementById("secretsidebar").style.display = "block"
@@ -288,6 +288,13 @@ function addRobot(color,c2) {
   h3.textContent = teamnum.value;
   div.appendChild(h3);
 
+  var inputter = document.createElement('input'); // <input type="number" class="text" id="teamnumber" value="2539"/>
+  inputter.type = "number"
+  inputter.value = teamnum.value
+  inputter.style = "width:100%; height:15%; position:absolute; display:block; top:67%; left:0%; text-align:center; color:black; font-size:" + robotsize/5 + "px; z-index:100;"
+  inputter.style.visibility = "hidden"
+  div.appendChild(inputter);
+
   var img = document.createElement('img');
   img.style = "width:100%; height:100%; user-select:none;"
   if (color == "red" || color == "blue") {
@@ -300,7 +307,17 @@ function addRobot(color,c2) {
   img.draggable = false
   div.appendChild(img);
 
+  var changingNumber = false;
+  div.addEventListener('dblclick',function(){
+    changingNumber = !changingNumber
+    var b = h3.style.visibility
+    h3.style.visibility = inputter.style.visibility
+    inputter.style.visibility = b
+    h3.textContent = inputter.value;
+  })
+
   div.addEventListener('mousedown',function(e){
+    if (changingNumber) return;
     var offX = e.offsetX;
     var offY = e.offsetY;
 
@@ -335,21 +352,47 @@ function addRobot(color,c2) {
     document.addEventListener("touchmove", touchMoveFunc, { passive: false });
   })
 
+  var mylatesttap = 0
   div.addEventListener("touchstart", function (e) {
-    console.log("touch robot")
-    mousePos = getTouchPos(canvas, e);
-    var touch = e.touches[0];
-    //console.log("touch x: "+touch.clientX+" y: "+touch.clientY)
-    var mouseEvent = new MouseEvent("mousedown", {
-      clientX: touch.clientX,
-      clientY: touch.clientY
-    });
-    div.dispatchEvent(mouseEvent);
+    var now = new Date().getTime();
+    var timesince = now - mylatesttap;
+    mylatesttap = new Date().getTime();
+    if ((timesince < 600) && (timesince > 0)) {
+      // double tap   
+      var mouseEvent = new MouseEvent("dblclick", {});
+      div.dispatchEvent(mouseEvent);
+      mylatesttap = -200 // make it less annoying
+    }else{
+      // too much time to be a double tap
+      console.log("touch robot")
+      mousePos = getTouchPos(canvas, e);
+      var touch = e.touches[0];
+      //console.log("touch x: "+touch.clientX+" y: "+touch.clientY)
+      var mouseEvent = new MouseEvent("mousedown", {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+      });
+      div.dispatchEvent(mouseEvent);
+    }
   }, { passive: false });
   robots.push(div)
 
 }
 
+var hasdas = ([document.getElementById("qaRed"),document.getElementById("qaBlue")])
+document.getElementById("qaRed").addEventListener('click',function(){addRobot('red')})
+document.getElementById("qaBlue").addEventListener('click',function(){addRobot('blue')})
+hasdas.forEach(function(e) {
+  console.log(e)
+  e.addEventListener('mouseover', function(){
+    e.style.border = "8px solid white"
+    e.style.backgroundColor = "rgb(75, 250, 90)"
+  })
+  e.addEventListener('mouseout', function(){
+    e.style.border = "5px solid rgb(75, 250, 90)"
+    e.style.backgroundColor = "rgb(38, 121, 45)"
+  })
+})
 document.getElementById("roboR").addEventListener('click',function(){addRobot('red')})
 document.getElementById("roboB").addEventListener('click',function(){addRobot('blue')})
 document.getElementById("roboC").addEventListener('click',function(){addRobot(h.value,s.value)})

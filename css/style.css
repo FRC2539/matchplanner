@@ -112,6 +112,12 @@ label {
   padding:5px; 
   border-radius: 40px;
   background-color:black; 
-  width:100px; 
   border: 5px solid rgb(255, 60, 0);
+}
+
+.quickadd {
+  padding:5px; 
+  border-radius: 20px;
+  background-color:rgb(38, 121, 45); 
+  border: 5px solid rgb(75, 250, 90);
 }
