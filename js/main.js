@@ -52,7 +52,7 @@ scale()
 
 // resize canvas
 function resize() {
-  ctx.canvas.width = window.innerWidth * (sidebarShowing ? .8 : 1);
+  ctx.canvas.width = window.innerWidth;
   ctx.canvas.height = window.innerHeight;
 }
 
