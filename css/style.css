@@ -88,6 +88,7 @@ label {
   border-color:brown;
   font-weight:bold;
   font-size:medium;
+  color:black;
 }
 
 /* Mouse-over effects */
@@ -123,8 +124,8 @@ label {
 .quickadd {
   padding:5px; 
   border-radius: 20px;
-  background-color:rgb(38, 121, 45); 
-  border: 5px solid rgb(75, 250, 90);
+  background-color:brown; 
+  border: 5px solid tomato;
 }
 
 #showinfo {

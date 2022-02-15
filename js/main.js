@@ -403,18 +403,19 @@ function addRobot(color,c2) {
   robots.push(div)
 }
 
+var bettercolors = false;
 var hasdas = ([document.getElementById("qaRed"),document.getElementById("qaBlue")])
 document.getElementById("qaRed").addEventListener('click',function(){addRobot('red')})
 document.getElementById("qaBlue").addEventListener('click',function(){addRobot('blue')})
 hasdas.forEach(function(e) {
   console.log(e)
   e.addEventListener('mouseover', function(){
-    e.style.border = "8px solid white"
-    e.style.backgroundColor = "rgb(75, 250, 90)"
+    e.style.border = bettercolors ? "8px solid white" : "8px solid orange"
+    e.style.backgroundColor = bettercolors ? "rgb(75, 250, 90)" : "tomato"
   })
   e.addEventListener('mouseout', function(){
-    e.style.border = "5px solid rgb(75, 250, 90)"
-    e.style.backgroundColor = "rgb(38, 121, 45)"
+    e.style.border = bettercolors ? "5px solid rgb(75, 250, 90)" : "5px solid tomato"
+    e.style.backgroundColor = bettercolors ? "rgb(38, 121, 45)" : "brown"
   })
 })
 document.getElementById("roboR").addEventListener('click',function(){addRobot('red')})
@@ -426,5 +427,13 @@ document.getElementById("clearR").addEventListener('click',function(){
     div.remove()
   })
 });
+
+document.getElementById("spite").addEventListener('click',function(){
+  bettercolors = !bettercolors
+  hasdas.forEach(function(e){
+    e.style.border = bettercolors ? "5px solid rgb(75, 250, 90)" : "5px solid tomato"
+    e.style.backgroundColor = bettercolors ? "rgb(38, 121, 45)" : "brown"
+  })
+})
 
 }
