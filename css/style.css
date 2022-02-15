@@ -83,6 +83,11 @@ label {
 
 .button {
   border-radius:10px;
+  height:40px;
+  background-color:tomato;
+  border-color:brown;
+  font-weight:bold;
+  font-size:medium;
 }
 
 /* Mouse-over effects */
@@ -120,4 +125,11 @@ label {
   border-radius: 20px;
   background-color:rgb(38, 121, 45); 
   border: 5px solid rgb(75, 250, 90);
+}
+
+#showinfo {
+  padding:5px; 
+  border-radius: 50%;
+  background-color:rgb(80, 150, 255); 
+  border: 5px solid rgb(128, 240, 255);
 }

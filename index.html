@@ -36,6 +36,7 @@
 </head>
 
 <body class="fullscreen">
+  <img src="./images/info.jpg" id="showinfo" style="position: fixed; margin:5px; width:75px; height:75px; z-index:105; right:0%; bottom:0%;">
   <div style="margin:5px; position: fixed; z-index:200; bottom:0%; width:auto; height:145px;">
     <img src="./images/sidebar.png" id="showhide" style="width:100px;">
     <img src="./images/addbot.png" class="quickadd" id="qaRed" style="margin:5px; width:75px;">
@@ -43,6 +44,7 @@
     <h3 id="theguy" style="color:rgb(255,60,0); margin:0px; width:600px">  - Add robots and change drawing settings here! </h3>
   </div>
   <div class="slidecontainer" id="sidebar" style="width: 20%; background-color:rgb(73, 30, 30); padding:.5%; padding-top:20px; z-index: 100; min-width: 400px; display: none;">
+    <h1 style="text-align: center;">Drawing Settings</h1>
     <div style="margin-top:2%; width:100%;"><label for="drawingCbox">Drawing:</label><input type="checkbox" class="checkbox" id="drawingCbox" checked></div>
     <div style="margin-top:2%; width:100%;"><label for="thickSlider">Thickness:</label><input type="range" min="1" max="50" value="5" class="slider" id="thickSlider"></div>
     <div style="margin-top:2%; width:100%;"><label for="alphaSlider">Alpha:</label><input type="range" min="1" max="100" value="100" class="slider" id="alphaSlider"></div>
@@ -52,7 +54,6 @@
     <div style="margin-top:2%; width:100%;"><input type="button" class="button" value="Clear Drawings" id="clearD" style="width:48%;"> <input type="button" class="button" value="Clear Robots" id="clearR" style="width:48%;"></div>
     <div class="slidecontainer" id="secretsidebar" style="width: 90%; background-color:rgb(141, 13, 56); padding:5px; z-index: 100; margin:10px; display: none; border-radius:10px;">
       <h1 style="text-align: center;">Konami Code</h1>
-      <h2 style="text-align: center;">(11223434567 is the Konami code translated into numbers)</h2>
       <div style="margin-top:2%; width:100%;"><input type="button" class="button" value="Random Color!" id="randcol" style="width:100%;"></div>
       <div style="margin-top:2%; width:100%;"><label for="hueSlider">Hue:</label><input type="range" min="1" max="360" value="25" class="slider" id="hueSlider"></div>
       <div style="margin-top:2%; width:100%;"><label for="satSlider">Saturation:</label><input type="range" min="1" max="100" value="100" class="slider" id="satSlider"></div>
@@ -61,12 +62,35 @@
       <div style="margin-top:2%; width:100%;"><label for="chaos">Crazy Draw:</label><input type="checkbox" class="checkbox" id="chaos"></div>
     </div>
   </div>
+  <div id="infosidebar" style="position:absolute; width: 20%; background-color:rgb(23, 75, 99); padding:.5%; padding-top:20px; z-index: 100; min-width: 400px; display: none; right:0%; top:0%; bottom:0%;">
+    <h1 style="text-align: center;">How To Technology</h1>
+    <p>Click and Drag: Draw</p>
+    <p>Red/Blue Robot Buttons: Add a robot</p>
+    <p>Double tap robot: Change team number</p>
+    <br>
+    <p>Krypton Cougars logo: Open drawing settings</p>
+    <p>Drawing checkbox: Toggle drawing</p>
+    <p>Thickness slider: Change line weight</p>
+    <p>Alpha slider: Change line transparency</p>
+    <p>Red/Blue Color: Change line color to red/blue</p>
+    <p>Team Number: Sets a default team number</p>
+    <p>Clear Drawings: Removes all lines from the canvas</p>
+    <p>Clear Robots: Removes all robots from the canvas</p>
+    <br>
+    <p>1-7 Numerical Konami Code T#: ???</p>
+    <div id="secretinfo" style="background-color:rgb(141, 13, 56); padding:5px; border-radius:10px; visibility:hidden;">
+      <h2 style="text-align:center">Konami Code Functions</h2>
+      <p>If you're smart enough to unlock this, you probably don't need an explanation for HSV and Random Color</p>
+      <p>Add Custom Robot: Adds a robot with your set color</p>
+      <p>Add Random Robot: Adds a robot with a random color</p>
+      <p>Crazy Draw: Randomizes all line settings for every line segment, basically makes insanity</p>
+    </div> 
+  </div>
   <div style="width: 100%; height:100%;position:fixed;top:0" id="coolestdivever">
     <div class="container" id="robotcontaner" style="z-index:2000;">
       <img src="./images/RapidReactField_sm.png" class="bg" id="bgimg" style="z-index: 0;"/>
       <!--<h1 style="position:absolute; text-align: center; top: 45%; width:80%;">Draw Stuffs!</h1>-->
     </div>
-
   </div>
   <script>
     // register ServiceWorker, remember to use absolute path!

@@ -18,7 +18,8 @@ var chaos = document.getElementById("chaos");
 var teamnum = document.getElementById("teamnumber");
 var bgimg = document.getElementById("bgimg");
 var robots = []
-var robotsize = 90;
+var robotsize = (window.innerWidth > window.innerHeight ? window.innerWidth : window.innerHeight)*0.052;
+console.log(robotsize)
 
 // create canvas element and append it to document body
 
@@ -270,6 +271,29 @@ document.getElementById("blueb").addEventListener('click', function () { h.value
   renderCanvas();
 })();
 
+var infoShowHide = document.getElementById("showinfo")
+var infoShowing = false;
+function infoShowhideColor() {
+  infoShowHide.style.border = "5px solid " + (!infoShowing ? "rgb(128, 240, 255)" : "rgb(80, 150, 255)")
+  infoShowHide.style.backgroundColor = (!infoShowing ? "rgb(80, 150, 255)" : "rgb(128, 240, 255)")
+}
+
+function infoIsAwesome() {
+  var val = infoShowing
+  infoShowing = !infoShowing
+  document.getElementById("infosidebar").style.visibility = val ? "hidden" : "visible";
+  document.getElementById("infosidebar").style.display = val ? "none" : "block";
+  document.getElementById("infosidebar").style.width = val ? "0%" : "20%";
+  infoShowhideColor()
+}
+
+infoShowHide.addEventListener('click', infoIsAwesome)
+infoShowHide.addEventListener('mouseover', function(){
+  infoShowHide.style.border = "8px solid white"
+  infoShowHide.style.backgroundColor = "rgb(128, 240, 255)"
+})
+infoShowHide.addEventListener('mouseout', infoShowhideColor)
+
 ////// ROBOT STUFF STARTS HERE //////
 
 function addRobot(color,c2) {
@@ -277,6 +301,7 @@ function addRobot(color,c2) {
     teamnum.value = "254"
     document.getElementById("secretsidebar").style.visibility = "visible"
     document.getElementById("secretsidebar").style.display = "block"
+    document.getElementById("secretinfo").style.visibility = "visible"
     return
   }
   var div = document.createElement('div');
@@ -376,7 +401,6 @@ function addRobot(color,c2) {
     }
   }, { passive: false });
   robots.push(div)
-
 }
 
 var hasdas = ([document.getElementById("qaRed"),document.getElementById("qaBlue")])
