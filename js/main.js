@@ -366,10 +366,10 @@ function addRobot(color,c2) {
       document.dispatchEvent(mouseEvent);
     }
     function touchMoveFunc(e) {
-      var touch = e.touches[0];
+      var touch = getTouchPos(canvas, e);;
       var mouseEvent = new MouseEvent("mousemove", {
-        clientX: touch.clientX,
-        clientY: touch.clientY
+        clientX: touch.x,
+        clientY: touch.y
       });
       document.dispatchEvent(mouseEvent);
     }
