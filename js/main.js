@@ -171,10 +171,10 @@ canvas.addEventListener("touchend", function (e) {
   canvas.dispatchEvent(mouseEvent);
 }, { passive: false });
 canvas.addEventListener("touchmove", function (e) {
-  var touch = e.touches[0];
+  var touch = getTouchPos(canvas, e);
   var mouseEvent = new MouseEvent("mousemove", {
-    clientX: touch.clientX,
-    clientY: touch.clientY
+    clientX: touch.x,
+    clientY: touch.y
   });
   canvas.dispatchEvent(mouseEvent);
 }, { passive: false });
@@ -392,13 +392,14 @@ function addRobot(color,c2) {
     }else{
       // too much time to be a double tap
       console.log("touch robot")
-      mousePos = getTouchPos(canvas, e);
-      var touch = e.touches[0];
+      var touch = getTouchPos(canvas, e);
       //console.log("touch x: "+touch.clientX+" y: "+touch.clientY)
       var mouseEvent = new MouseEvent("mousedown", {
-        clientX: touch.clientX,
-        clientY: touch.clientY
+        clientX: touch.x,
+        clientY: touch.y
       });
+      document.getElementById("clearD").value = "S: "+touch.x
+      document.getElementById("clearR").value = "S: "+touch.y
       div.dispatchEvent(mouseEvent);
     }
   }, { passive: false });
