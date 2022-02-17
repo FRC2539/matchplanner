@@ -423,6 +423,7 @@ document.getElementById("roboB").addEventListener('click',function(){addRobot('b
 document.getElementById("roboC").addEventListener('click',function(){addRobot(h.value,s.value)})
 document.getElementById("roboRAND").addEventListener('click',function(){addRobot(Math.random()*360,75+Math.random()*25)})
 document.getElementById("clearR").addEventListener('click',function(){
+  document.getElementById("clearR").value = "I am the problem"
   robots.forEach(function(div){
     div.remove()
   })
