@@ -228,8 +228,8 @@ function getMousePos(canvasDom, mouseEvent) {
 function getTouchPos(canvasDom, touchEvent) {
   var rect = canvasDom.getBoundingClientRect();
   return {
-    x: touchEvent.touches[0].clientX - rect.left,
-    y: touchEvent.touches[0].clientY - rect.top
+    x: Math.floor(touchEvent.touches[0].clientX - rect.left),
+    y: Math.floor(touchEvent.touches[0].clientY - rect.top)
   };
 }
 
@@ -398,8 +398,6 @@ function addRobot(color,c2) {
         clientX: touch.x,
         clientY: touch.y
       });
-      document.getElementById("clearD").value = "S: "+touch.x
-      document.getElementById("clearR").value = "S: "+touch.y
       div.dispatchEvent(mouseEvent);
     }
   }, { passive: false });
