@@ -343,8 +343,8 @@ function addRobot(color,c2) {
 
   div.addEventListener('mousedown',function(e){
     if (changingNumber) return;
-    var offX = e.offsetX;
-    var offY = e.offsetY;
+    var offX = 0//e.offsetX;
+    var offY = 0//e.offsetY;
 
     function mousey(e) {
       div.style.top = e.clientY - offY + "px"
