@@ -371,8 +371,6 @@ function addRobot(color,c2) {
         clientX: touch.x,
         clientY: touch.y
       });
-      document.getElementById("clearD").value = touch.x
-      document.getElementById("clearR").value = touch.y
       document.dispatchEvent(mouseEvent);
     }
     document.addEventListener("touchend", touchEndFunc, { passive: false });
