@@ -71,14 +71,16 @@ function scale(e) {
 // do that but save the canvas
 var drawPoints = [];
 function canvasRetainingResize() {
-  //var offset = (showhide.value == "Hide sidebar" ? .8 : 1);
-  var offset = 1;
-  ctx.canvas.width = window.innerWidth * offset;
-  ctx.canvas.height = window.innerHeight;
-  drawPoints.forEach(function (lineData, index) {
-    if (index == 0) lastPos = [lineData[0] - ctx.canvas.width * 1.25 * (1 - offset), lineData[1] + (30 * (1 - offset) * 5)];
-    drawLine(lineData[0] - ctx.canvas.width * 1.25 * (1 - offset), lineData[1] + (30 * (1 - offset) * 5), lineData[2], lineData[3], lineData[4], true);
-  })
+  setTimeout(() => { // because orientation changes are funny
+    //var offset = (showhide.value == "Hide sidebar" ? .8 : 1);
+    var offset = 1;
+    ctx.canvas.width = window.innerWidth * offset;
+    ctx.canvas.height = window.innerHeight;
+    drawPoints.forEach(function (lineData, index) {
+      if (index == 0) lastPos = [lineData[0] - ctx.canvas.width * 1.25 * (1 - offset), lineData[1] + (30 * (1 - offset) * 5)];
+      drawLine(lineData[0] - ctx.canvas.width * 1.25 * (1 - offset), lineData[1] + (30 * (1 - offset) * 5), lineData[2], lineData[3], lineData[4], true);
+    })
+  },1000)
 }
 
 window.addEventListener("orientationchange", canvasRetainingResize, false);
