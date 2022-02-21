@@ -81,6 +81,8 @@ function canvasRetainingResize() {
   })
 }
 
+window.addEventListener("orientationchange", canvasRetainingResize, false);
+
 var sidebarShowing = false;
 function setShowhideColor() {
   showhide.style.border = "5px solid " + (sidebarShowing ? "black" : "rgb(255,60,0)")
