@@ -347,13 +347,13 @@ function addRobot(color,c2) {
   inputter.style = "width:100%; height:15%; position:absolute; display:block; top:67%; left:0%; text-align:center; color:black; font-size:" + robotsize/5 + "px; z-index:100;"
   inputter.style.visibility = "hidden"
   inputter.onkeydown = (x) => {
-    if (x.keyCode == 13) {
+    //if (x.keyCode == 13) {
       changingNumber = !changingNumber
       var b = h3.style.visibility
       h3.style.visibility = inputter.style.visibility
       inputter.style.visibility = b
-      h3.textContent = inputter.value;
-    }
+      h3.textContent = x.key;
+    //}
   }
   div.appendChild(inputter);
 
