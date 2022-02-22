@@ -89,16 +89,16 @@ function canvasRetainingResize() {
     var rig = xe.offsetRight;
     var tob = xe.offsetTop;
     var bot = xe.offsetBottom;
-    if ((ctx.canvas.width > ctx.canvas.height)) {
-      xe.style.left = (ctx.canvas.width-tob) + "px"
-      xe.style.right = (ctx.canvas.width-bot) + "px"
+    if ((ctx.canvas.width < ctx.canvas.height)) {
+      xe.style.left = (ctx.canvas.width-robotsize-tob) + "px"
+      xe.style.right = (ctx.canvas.width-robotsize-bot) + "px"
       xe.style.top = lef + "px"
       xe.style.bottom = rig + "px"
     } else {
       xe.style.left = tob + "px"
       xe.style.right = bot + "px"
-      xe.style.top = lef + "px"
-      xe.style.bottom = rig + "px"
+      xe.style.top = (ctx.canvas.height-robotsize-lef) + "px"
+      xe.style.bottom = (ctx.canvas.height-robotsize-rig) + "px"
     }
   }) // the line of code designed specifically to confuse you
 
@@ -346,6 +346,15 @@ function addRobot(color,c2) {
   inputter.value = teamnum.value
   inputter.style = "width:100%; height:15%; position:absolute; display:block; top:67%; left:0%; text-align:center; color:black; font-size:" + robotsize/5 + "px; z-index:100;"
   inputter.style.visibility = "hidden"
+  inputter.onkeydown = (x) => {
+    if (x.key == "Enter") {
+      changingNumber = !changingNumber
+      var b = h3.style.visibility
+      h3.style.visibility = inputter.style.visibility
+      inputter.style.visibility = b
+      h3.textContent = inputter.value;
+    }
+  }
   div.appendChild(inputter);
 
   var img = document.createElement('img');
