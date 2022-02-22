@@ -58,32 +58,53 @@ function resize() {
 
 function scale(e) {
   //if ((e && screen.orientation.type == "portrait-primary") || (!e && window.innerWidth < window.innerHeight)) {
-  if (( window.innerWidth < window.innerHeight)) {
+  if ((ctx.canvas.width < ctx.canvas.height)) {
     bgimg.src = "./images/RapidReactField_sm_portrait.png";
-    bgimg.style.width = "95%"
   } else {
     bgimg.src = "./images/RapidReactField_sm.png";
-    bgimg.style.height = "95%"
   }
-  robots.forEach(function(v){(["width","height"]).forEach(function(x){v.style[x] = robotsize+"px"}); console.log(v.firstChild); v.firstChild.style.fontSize = (robotsize/5)+"px"}) // the line of code designed specifically to confuse you
+  robots.forEach(function(v){(["width","height"]).forEach((x)=>{v.style[x] = robotsize+"px"}); console.log(v.firstChild); v.firstChild.style.fontSize = (robotsize/5)+"px"}) // the line of code designed specifically to confuse you
 }
 
 // do that but save the canvas
 var drawPoints = [];
 function canvasRetainingResize() {
-  setTimeout(() => { // because orientation changes are funny
-    //var offset = (showhide.value == "Hide sidebar" ? .8 : 1);
-    var offset = 1;
-    ctx.canvas.width = window.innerWidth * offset;
-    ctx.canvas.height = window.innerHeight;
-    drawPoints.forEach(function (lineData, index) {
-      if (index == 0) lastPos = [lineData[0] - ctx.canvas.width * 1.25 * (1 - offset), lineData[1] + (30 * (1 - offset) * 5)];
-      drawLine(lineData[0] - ctx.canvas.width * 1.25 * (1 - offset), lineData[1] + (30 * (1 - offset) * 5), lineData[2], lineData[3], lineData[4], true);
-    })
-  },1000)
+  var h = ctx.canvas.width
+  ctx.canvas.width = ctx.canvas.height;
+  ctx.canvas.height = h;
+  drawPoints.forEach(function (lineData, index) {
+    var savedLine = [lineData[0],lineData[1]]
+    if (ctx.canvas.width < ctx.canvas.height) {
+      lineData[0] = ctx.canvas.width-savedLine[1]
+      lineData[1] = savedLine[0]
+    } else {
+      lineData[1] = ctx.canvas.height-savedLine[0]
+      lineData[0] = savedLine[1]
+    }
+    if (index == 0) lastPos = [lineData[0], lineData[1]];
+    drawLine(lineData[0], lineData[1], lineData[2], lineData[3], lineData[4], true);
+  })
+  robots.forEach((xe)=>{
+    var lef = xe.offsetLeft;
+    var rig = xe.offsetRight;
+    var tob = xe.offsetTop;
+    var bot = xe.offsetBottom;
+    if ((ctx.canvas.width > ctx.canvas.height)) {
+      xe.style.left = (ctx.canvas.width-tob) + "px"
+      xe.style.right = (ctx.canvas.width-bot) + "px"
+      xe.style.top = lef + "px"
+      xe.style.bottom = rig + "px"
+    } else {
+      xe.style.left = tob + "px"
+      xe.style.right = bot + "px"
+      xe.style.top = lef + "px"
+      xe.style.bottom = rig + "px"
+    }
+  }) // the line of code designed specifically to confuse you
+
 }
 
-window.addEventListener("orientationchange", canvasRetainingResize, false);
+window.addEventListener("orientationchange", ()=>{canvasRetainingResize();scale()}, false);
 
 var sidebarShowing = false;
 function setShowhideColor() {
@@ -101,7 +122,10 @@ function booleansAreAwesome() {
   //document.getElementById("coolestdivever").style.width = val ? "100%" : "80%";
   //canvas.style.top = val ? "30px" : "0%"
   //canvasRetainingResize()
-  if (document.getElementById("theguy")) {document.getElementById("theguy").remove()}
+  if (document.getElementById("theguy")) {
+    document.getElementById("theguy").remove()
+    document.getElementById("hruh").style.bottom = "-2.25%"
+  }
 }
 
 //booleansAreAwesome(); // it should be hidden on launch
@@ -351,8 +375,11 @@ function addRobot(color,c2) {
     var offY = robotsize/2;
 
     function mousey(e) {
+      div.style.position = "absolute"
       div.style.top = e.clientY - offY + "px"
       div.style.left = e.clientX - offX + "px"
+      div.style.bottom = e.clientY + offY + "px"
+      div.style.right = e.clientX + offX + "px"
     }
     document.addEventListener('mousemove',mousey)
 
