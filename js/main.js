@@ -369,13 +369,17 @@ function addRobot(color,c2) {
   img.draggable = false
   div.appendChild(img);
 
+  var debounce = false;
   var changingNumber = false;
   div.addEventListener('dblclick',function(){
+    if (debounce) return;
+    debounce = true;
     changingNumber = !changingNumber
     var b = h3.style.visibility
     h3.style.visibility = inputter.style.visibility
     inputter.style.visibility = b
     h3.textContent = inputter.value;
+    setTimeout(()=>debounce = false,500) // ARROW FUNCTIONS
   })
 
   div.addEventListener('mousedown',function(e){
