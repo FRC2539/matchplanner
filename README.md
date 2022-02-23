@@ -1,1 +1,4 @@
 # matchplanner
+
+2539 is happy to share our match planning app with the First Community. This app is designed for larger phones and tablets to allow match planning with your alliance partners. The app is a PWA(Progressive Web Application). So you can add to home screen on IOS or install on other devices when prompted. This app will also work offline. Currently no data is saved on device or online and this app is intended for live planning and strategy with your alliance. You can add robots and move them around and draw on the screen. You can access and download the app here:
+https://frc2539.github.io/matchplanner/
