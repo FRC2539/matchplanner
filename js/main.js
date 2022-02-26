@@ -175,6 +175,7 @@ var lastPos = mousePos;
 canvas.addEventListener("mousedown", function (e) {
   drawing = true;
   lastPos = getMousePos(canvas, e);
+  lastErasePoint = getMousePos(canvas, e);
 }, false);
 canvas.addEventListener("mouseup", function (e) {
   drawing = false;
@@ -276,11 +277,22 @@ function drawLine(xPos,yPos,col,thic,alph,doNotSave) {
   };
 }
 
+const lerp = (x, y, a) => x * (1 - a) + y * a;
+var lastErasePoint = []
+function clearLine(xPos,yPos,thic) {
+  for (let i = 0; i < 1; i+=(1/Math.abs(lastErasePoint[0]-xPos+lastErasePoint[1]-yPos))) {
+    ctx.clearRect(lerp(lastErasePoint[0],xPos,i)-(thic/2),lerp(lastErasePoint[1],yPos,i)-(thic/2),thic,thic)
+  }
+  lastErasePoint = [xPos,yPos]
+}
+
 // Draw to the canvas
 function renderCanvas() {
-  if (drawing && drCbox.checked) {
-    if (chaos.checked) randCool("CHAOS");
-    drawLine(mousePos.x, mousePos.y, hslToHex(h.value,s.value,v.value),lineWidth.value,alpha.value);
+  if (drawing) {
+    if (drCbox.checked) {
+      if (chaos.checked) randCool("CHAOS");
+      drawLine(mousePos.x, mousePos.y, hslToHex(h.value,s.value,v.value),lineWidth.value,alpha.value);
+    } else clearLine(mousePos.x,mousePos.y,lineWidth.value)
   }
 }
 
@@ -453,11 +465,11 @@ document.getElementById("qaBlue").addEventListener('click',function(){addRobot('
 document.getElementById("qcRed").addEventListener('click', function () { h.value = 358; s.value = 82; v.value = 100 });
 document.getElementById("qcBlue").addEventListener('click', function () { h.value = 206; s.value = 100; v.value = 70 });
 drCbox.addEventListener('click',function(){
-  document.getElementById("qErase").src = drCbox.checked ? "./images/eraser.jpg" : "./images/pencil.jpg"
+  document.getElementById("qErase").src = drCbox.checked ? "./images/eraser.png" : "./images/pencil.png"
 })
 document.getElementById("qErase").addEventListener('click',function(){
   drCbox.checked = !drCbox.checked
-  document.getElementById("qErase").src = drCbox.checked ? "./images/eraser.jpg" : "./images/pencil.jpg"
+  document.getElementById("qErase").src = drCbox.checked ? "./images/eraser.png" : "./images/pencil.png"
 })
 document.getElementById("qClear").addEventListener('click',function(){
   clearCanvas();
