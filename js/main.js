@@ -124,7 +124,7 @@ function booleansAreAwesome() {
   //canvasRetainingResize()
   if (document.getElementById("theguy")) {
     document.getElementById("theguy").remove()
-    document.getElementById("hruh").style.bottom = "-2.25%"
+    document.getElementById("hruh").style.bottom = "0%"
   }
 }
 
@@ -447,13 +447,29 @@ function addRobot(color,c2) {
 }
 
 var bettercolors = false;
-var hasdas = ([document.getElementById("qaRed"),document.getElementById("qaBlue")])
+var hasdas = ([document.getElementById("qaRed"),document.getElementById("qaBlue"),document.getElementById("qcRed"),document.getElementById("qcBlue"),document.getElementById("qErase"),document.getElementById("qClear")])
 document.getElementById("qaRed").addEventListener('click',function(){addRobot('red')})
 document.getElementById("qaBlue").addEventListener('click',function(){addRobot('blue')})
+document.getElementById("qcRed").addEventListener('click', function () { h.value = 358; s.value = 82; v.value = 100 });
+document.getElementById("qcBlue").addEventListener('click', function () { h.value = 206; s.value = 100; v.value = 70 });
+drCbox.addEventListener('click',function(){
+  document.getElementById("qErase").src = drCbox.checked ? "./images/eraser.jpg" : "./images/pencil.jpg"
+})
+document.getElementById("qErase").addEventListener('click',function(){
+  drCbox.checked = !drCbox.checked
+  document.getElementById("qErase").src = drCbox.checked ? "./images/eraser.jpg" : "./images/pencil.jpg"
+})
+document.getElementById("qClear").addEventListener('click',function(){
+  clearCanvas();
+  drawPoints = [];
+  robots.forEach(function(div){
+    div.remove()
+  })
+});
 hasdas.forEach(function(e) {
   console.log(e)
   e.addEventListener('mouseover', function(){
-    e.style.border = bettercolors ? "8px solid white" : "8px solid orange"
+    e.style.border = bettercolors ? "5px solid white" : "5px solid orange"
     e.style.backgroundColor = bettercolors ? "rgb(75, 250, 90)" : "tomato"
   })
   e.addEventListener('mouseout', function(){
