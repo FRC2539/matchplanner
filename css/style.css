@@ -1,7 +1,7 @@
 body {
-  font-family: sans-serif;
   color:white;
   user-select: none;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 /* Make content area fill the entire browser window */
@@ -134,6 +134,11 @@ label {
   visibility:visible; 
   display:inline;
 }
+
+div[active="yes"] img[class="quickadd"] {
+  visibility:hidden;
+}
+
 @media only screen and (max-width: 500px) {
   .quickadd {
     visibility:hidden;

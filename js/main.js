@@ -8,6 +8,7 @@ window.onload = () => {
 //sidebar
 var showhide = document.getElementById("showhide");
 var drCbox = document.getElementById("drawingCbox");
+var bcbox = document.getElementById("buttonCbox")
 var lineWidth = document.getElementById("thickSlider");
 var h = document.getElementById("hueSlider");
 var s = document.getElementById("satSlider");
@@ -115,6 +116,7 @@ function setShowhideColor() {
 function booleansAreAwesome() {
   var val = sidebarShowing
   sidebarShowing = !sidebarShowing
+  document.getElementById("hruh").setAttribute("active", val ? "no" : "yes")
   document.getElementById("sidebar").style.visibility = val ? "hidden" : "visible";
   document.getElementById("sidebar").style.display = val ? "none" : "block";
   document.getElementById("sidebar").style.width = val ? "0%" : "20%";
@@ -301,7 +303,9 @@ function clearCanvas() {
   drawPoints = [];
 }
 
-document.getElementById("clearD").addEventListener('click',clearCanvas);
+document.getElementById("clearD").addEventListener('click',function(){
+  prompt("Clear all drawings?",clearCanvas)
+});
 document.getElementById("redb").addEventListener('click', function () { h.value = 358; s.value = 82; v.value = 100 });
 document.getElementById("blueb").addEventListener('click', function () { h.value = 206; s.value = 100; v.value = 70 });
 
@@ -336,12 +340,32 @@ infoShowHide.addEventListener('mouseout', infoShowhideColor)
 
 ////// ROBOT STUFF STARTS HERE //////
 
+var hasdas = ([document.getElementById("qaRed"),document.getElementById("qaBlue"),document.getElementById("qcRed"),document.getElementById("qcBlue"),document.getElementById("qErase"),document.getElementById("qClear")])
 function addRobot(color,c2) {
   if (teamnum.value == 11223434567 && color == "blue") {
     teamnum.value = "254"
-    document.getElementById("secretsidebar").style.visibility = "visible"
-    document.getElementById("secretsidebar").style.display = "block"
-    document.getElementById("secretinfo").style.visibility = "visible"
+    prompt("Are you sure?",()=>{
+      document.getElementById("secretsidebar").style.visibility = "visible"
+      document.getElementById("secretsidebar").style.display = "block"
+      document.getElementById("secretinfo").style.visibility = "visible"
+      var chaosButtom = document.createElement('img');
+      chaosButtom.className = "quickadd"
+      chaosButtom.src = "./images/redpaint.png"
+      chaosButtom.style = "background-color:rgb(141, 13, 56); border:5px solid rgb(255, 70, 120);"
+      document.getElementById("hruh").insertBefore(document.createElement("br"), document.getElementById("hruh").firstChild);
+      document.getElementById("hruh").insertBefore(chaosButtom, document.getElementById("hruh").firstChild);
+      function recursiveChaosRecolor() {
+        chaosButtom.style.filter = "hue-rotate("+(Math.random()*360)+"deg)"
+        chaosButtom.style.transform = "translate("+(Math.random()*6-3)+"px, "+(Math.random()*6-3)+"px) rotate("+(Math.random()*30-15)+"deg)"
+        setTimeout(recursiveChaosRecolor,10)
+      }
+      recursiveChaosRecolor()
+      chaosButtom.addEventListener("click",()=>{
+        chaos.checked = !chaos.checked;
+      })
+      chaosButtom.style.visibility = !bcbox.checked ? "hidden" : ""
+      hasdas.push(chaosButtom)
+    })
     return
   }
   var div = document.createElement('div');
@@ -458,8 +482,27 @@ function addRobot(color,c2) {
   robots.push(div)
 }
 
+var promp = document.getElementById("promp")
+var tx = document.getElementById("prompText")
+var yes = document.getElementById("prompYes")
+var no = document.getElementById("prompNo")
+no.onclick = ()=>{
+  promp.style.visibility = "hidden"
+  document.getElementById("thebg").style.visibility = "hidden"
+}
+yes.addEventListener("click", ()=>{
+  promp.style.visibility = "hidden"
+  document.getElementById("thebg").style.visibility = "hidden"
+})
+function prompt(text,yesFunc) {
+  promp.style.visibility = "visible"
+  document.getElementById("thebg").style.visibility = "visible"
+  tx.innerHTML = text
+  yes.onclick = yesFunc
+}
+no.onclick()
+
 var bettercolors = false;
-var hasdas = ([document.getElementById("qaRed"),document.getElementById("qaBlue"),document.getElementById("qcRed"),document.getElementById("qcBlue"),document.getElementById("qErase"),document.getElementById("qClear")])
 document.getElementById("qaRed").addEventListener('click',function(){addRobot('red')})
 document.getElementById("qaBlue").addEventListener('click',function(){addRobot('blue')})
 document.getElementById("qcRed").addEventListener('click', function () { h.value = 358; s.value = 82; v.value = 100 });
@@ -472,10 +515,12 @@ document.getElementById("qErase").addEventListener('click',function(){
   document.getElementById("qErase").src = drCbox.checked ? "./images/eraser.png" : "./images/pencil.png"
 })
 document.getElementById("qClear").addEventListener('click',function(){
-  clearCanvas();
-  drawPoints = [];
-  robots.forEach(function(div){
-    div.remove()
+  prompt("Clear everything?",()=>{
+    clearCanvas();
+    drawPoints = [];
+    robots.forEach(function(div){
+      div.remove()
+    })
   })
 });
 hasdas.forEach(function(e) {
@@ -494,10 +539,17 @@ document.getElementById("roboB").addEventListener('click',function(){addRobot('b
 document.getElementById("roboC").addEventListener('click',function(){addRobot(h.value,s.value)})
 document.getElementById("roboRAND").addEventListener('click',function(){addRobot(Math.random()*360,75+Math.random()*25)})
 document.getElementById("clearR").addEventListener('click',function(){
-  robots.forEach(function(div){
-    div.remove()
+  prompt("Clear all robots?",()=>{
+    robots.forEach(function(div){
+      div.remove()
+    })
   })
 });
+bcbox.addEventListener("click",()=>{
+  hasdas.forEach((x)=>{
+    x.style.visibility = !bcbox.checked ? "hidden" : ""
+  })
+})
 
 document.getElementById("spite").addEventListener('click',function(){
   bettercolors = !bettercolors

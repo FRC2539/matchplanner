@@ -37,10 +37,8 @@
 
 <body class="fullscreen">
   <img src="./images/info.jpg" id="showinfo" style="position: fixed; margin:5px; width:75px; height:75px; z-index:105; right:0%; bottom:0%;">
-  <div id="hruh" style="position: absolute; margin:5px; width:138px; z-index:106; left:0%; bottom:3%;">
+  <div id="hruh" active="no" style="position: absolute; margin:5px; width:138px; z-index:106; left:0%; bottom:3%;">
     <!--
-      - ERASER
-      - quick clear + prompt
       - undo/redo
     -->
     <img src="./images/addbot.png" class="quickadd" id="qaRed">
@@ -52,9 +50,16 @@
     <img src="./images/sidebar.png" id="showhide" style="visibility:visible;">
     <h3 id="theguy" style="color:rgb(255,60,0); margin:0px; width:600px; visibility:visible; position:fixed;">  - Add robots and change drawing settings here! </h3>
   </div>
-  <div class="slidecontainer" id="sidebar" style="width: 20%; background-color:rgb(73, 30, 30); padding:.5%; padding-top:20px; z-index: 100; min-width: 400px; display: none;">
+  <div id="thebg" style="width:100%; height:100%; z-index: 1000; opacity:.35; background-color: black;"></div>
+  <div id="promp" style="width:300px; height:100px; background-color: brown; border:5px solid orangered; border-radius:20px; opacity:1; z-index:1001; top:50%; left:50%; position:fixed; margin: -50px 0 0 -150px;">
+    <h2 id="prompText" style="text-align:center; color:white; margin-top:13px;">Clear the canvas?</h2>
+    <input type="button" class="button" value="Yes" id="prompYes" style="position:absolute; bottom:6px; left: 6px; right:51%; top: 55px">
+    <input type="button" class="button" value="No" id="prompNo" style="position:absolute; bottom:6px; right: 6px; left:51%; top: 55px">
+  </div>
+  <div class="slidecontainer" id="sidebar" style="position:absolute; width: 20%; background-color:rgb(73, 30, 30); padding:.5%; padding-top:20px; z-index: 100; min-width: 400px; display: none; left:0%; top:0%; bottom:0%;">
     <h1 style="text-align: center;">Drawing Settings</h1>
     <div style="margin-top:2%; width:100%;"><label for="drawingCbox">Drawing:</label><input type="checkbox" class="checkbox" id="drawingCbox" checked></div>
+    <div style="margin-top:2%; width:100%;"><label for="buttonCbox">Quick Access Buttons:</label><input type="checkbox" class="checkbox" id="buttonCbox" checked></div>
     <div style="margin-top:2%; width:100%;"><label for="thickSlider">Thickness:</label><input type="range" min="1" max="50" value="5" class="slider" id="thickSlider"></div>
     <div style="margin-top:2%; width:100%;"><label for="alphaSlider">Alpha:</label><input type="range" min="1" max="100" value="100" class="slider" id="alphaSlider"></div>
     <div style="margin-top:2%; width:100%;"><input type="button" class="button" value="Red Color" id="redb" style="width:48%;"> <input type="button" class="button" value="Blue Color" id="blueb" style="width:48%;"></div>
@@ -76,10 +81,13 @@
     <h1 style="text-align: center;">How To Technology</h1>
     <p>Click and Drag: Draw</p>
     <p>Red/Blue Robot Buttons: Add a robot</p>
+    <p>Red/Blue Paint: Change line color to red/blue</p>
+    <p>Eraser/Pencil: Toggle drawing or erasing</p>
+    <p>Nuke: Clear all robots and drawings</p>
     <p>Double tap robot: Change team number</p>
     <br>
     <p>Krypton Cougars logo: Open drawing settings</p>
-    <p>Drawing checkbox: Toggle drawing</p>
+    <p>Drawing checkbox: Toggle drawing or erasing</p>
     <p>Thickness slider: Change line weight</p>
     <p>Alpha slider: Change line transparency</p>
     <p>Red/Blue Color: Change line color to red/blue</p>
@@ -93,7 +101,7 @@
       <p>If you're smart enough to unlock this, you probably don't need an explanation for HSV and Random Color</p>
       <p>Add Custom Robot: Adds a robot with your set color</p>
       <p>Add Random Robot: Adds a robot with a random color</p>
-      <p>Crazy Draw: Randomizes all line settings for every line segment, basically makes insanity</p>
+      <p>Crazy Draw: Randomizes all line settings for every line segment, also has a button</p>
       <p>Objectively Better Color Scheme: Made out of spite because someone wanted the robot buttons to be orange for some ungodly reason</p>
     </div> 
   </div>
