@@ -1,125 +1,471 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <title>Match Planner</title>
-  <link rel="canonical" href="https://frc2539.github.io/matchplanner/" />
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="apple-touch-icon" href="images/icon-192x192.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="white" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Hello World">
-  <link rel="apple-touch-icon" sizes="57x57" href="./images/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="./images/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="./images/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="./images/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="./images/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="./images/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="./images/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="./images/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="./images/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="./images/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
-  <!-- <link rel="manifest" href="/manifest.json">
+  <head>
+    <meta charset="utf-8" />
+    <title>Match Planner</title>
+    <link rel="canonical" href="https://frc2539.github.io/matchplanner/" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="images/icon-192x192.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="white" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Hello World" />
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="./images/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="./images/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="./images/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="./images/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="./images/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="./images/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="./images/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="./images/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./images/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="./images/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="./images/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./images/favicon-16x16.png"
+    />
+    <!-- <link rel="manifest" href="/manifest.json">
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff"> -->
-  <meta name="msapplication-TileImage" content="./images/icon-192x192.png">
-  <meta name="msapplication-TileColor" content="#FFFFFF">
-</head>
+    <meta name="msapplication-TileImage" content="./images/icon-192x192.png" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+  </head>
 
-<body class="fullscreen">
-  <img src="./images/info.jpg" id="showinfo" style="position: fixed; margin:5px; width:75px; height:75px; z-index:105; right:0%; bottom:0%;">
-  <div id="hruh" active="no" style="position: absolute; margin:5px; width:138px; z-index:106; left:0%; bottom:3%;">
-    <!--
+  <body class="fullscreen">
+    <img
+      src="./images/info.jpg"
+      id="showinfo"
+      style="
+        position: fixed;
+        margin: 5px;
+        width: 75px;
+        height: 75px;
+        z-index: 105;
+        right: 0%;
+        bottom: 0%;
+      "
+    />
+    <div
+      id="hruh"
+      active="no"
+      style="
+        position: absolute;
+        margin: 5px;
+        width: 138px;
+        z-index: 106;
+        left: 0%;
+        bottom: 3%;
+      "
+    >
+      <!--
       - undo/redo
     -->
-    <img src="./images/addbot.png" class="quickadd" id="qaRed">
-    <img src="./images/addblue.png" class="quickadd" id="qaBlue">
-    <img src="./images/redpaint.png" class="quickadd" id="qcRed">
-    <img src="./images/henry.png" class="quickadd" id="qcBlue">
-    <img src="./images/eraser.png" class="quickadd" id="qErase">
-    <img src="./images/nuke.png" class="quickadd" id="qClear">
-    <img src="./images/sidebar.png" id="showhide" style="visibility:visible;">
-    <h3 id="theguy" style="color:rgb(255,60,0); margin:0px; width:600px; visibility:visible; position:fixed;">  - Add robots and change drawing settings here! </h3>
-  </div>
-  <div id="thebg" style="width:100%; height:100%; z-index: 1000; opacity:.35; background-color: black;"></div>
-  <div id="promp" style="width:300px; height:100px; background-color: brown; border:5px solid orangered; border-radius:20px; opacity:1; z-index:1001; top:50%; left:50%; position:fixed; margin: -50px 0 0 -150px;">
-    <h2 id="prompText" style="text-align:center; color:white; margin-top:13px;">Clear the canvas?</h2>
-    <input type="button" class="button" value="Yes" id="prompYes" style="position:absolute; bottom:6px; left: 6px; right:51%; top: 55px">
-    <input type="button" class="button" value="No" id="prompNo" style="position:absolute; bottom:6px; right: 6px; left:51%; top: 55px">
-  </div>
-  <div class="slidecontainer" id="sidebar" style="position:absolute; width: 20%; background-color:rgb(73, 30, 30); padding:.5%; padding-top:20px; z-index: 100; min-width: 400px; display: none; left:0%; top:0%; bottom:0%;">
-    <h1 style="text-align: center;">Drawing Settings</h1>
-    <div style="margin-top:2%; width:100%;"><label for="drawingCbox">Drawing:</label><input type="checkbox" class="checkbox" id="drawingCbox" checked></div>
-    <div style="margin-top:2%; width:100%;"><label for="buttonCbox">Quick Access Buttons:</label><input type="checkbox" class="checkbox" id="buttonCbox" checked></div>
-    <div style="margin-top:2%; width:100%;"><label for="thickSlider">Thickness:</label><input type="range" min="1" max="50" value="5" class="slider" id="thickSlider"></div>
-    <div style="margin-top:2%; width:100%;"><label for="alphaSlider">Alpha:</label><input type="range" min="1" max="100" value="100" class="slider" id="alphaSlider"></div>
-    <div style="margin-top:2%; width:100%;"><input type="button" class="button" value="Red Color" id="redb" style="width:48%;"> <input type="button" class="button" value="Blue Color" id="blueb" style="width:48%;"></div>
-    <div style="margin-top:2%; width:100%;"><label for="chaos">Team Number:</label><input type="number" class="text" id="teamnumber" value="2539" /></div>
-    <div style="margin-top:2%; width:100%;"><input type="button" class="button" value="Add Red Robot" id="roboR" style="width:48%;"> <input type="button" class="button" value="Add Blue Robot" id="roboB" style="width:48%;"></div>
-    <div style="margin-top:2%; width:100%;"><input type="button" class="button" value="Clear Drawings" id="clearD" style="width:48%;"> <input type="button" class="button" value="Clear Robots" id="clearR" style="width:48%;"></div>
-    <div class="slidecontainer" id="secretsidebar" style="width: 90%; background-color:rgb(141, 13, 56); padding:5px; z-index: 100; margin:10px; display: none; border-radius:10px;">
-      <h1 style="text-align: center;">Konami Code</h1>
-      <div style="margin-top:2%; width:100%;"><input type="button" class="button" value="Random Color!" id="randcol" style="width:100%;"></div>
-      <div style="margin-top:2%; width:100%;"><label for="hueSlider">Hue:</label><input type="range" min="1" max="360" value="25" class="slider" id="hueSlider"></div>
-      <div style="margin-top:2%; width:100%;"><label for="satSlider">Saturation:</label><input type="range" min="1" max="100" value="100" class="slider" id="satSlider"></div>
-      <div style="margin-top:2%; width:100%;"><label for="valSlider">Value:</label><input type="range" min="1" max="50" value="50" class="slider" id="valSlider"></div>
-      <div style="margin-top:2%; width:100%;"><input type="button" class="button" value="Add Custom Robot" id="roboC" style="width:48%;"> <input type="button" class="button" value="Add Random Robot" id="roboRAND" style="width:48%;"></div>
-      <div style="margin-top:2%; width:100%;"><label for="chaos">Crazy Draw:</label><input type="checkbox" class="checkbox" id="chaos"></div>
-      <div style="margin-top:2%; width:100%;"><label for="spite">Objectively Better Color Scheme:</label><input type="checkbox" class="checkbox" id="spite"></div>
+      <img src="./images/addbot.png" class="quickadd" id="qaRed" />
+      <img src="./images/addblue.png" class="quickadd" id="qaBlue" />
+      <img src="./images/redpaint.png" class="quickadd" id="qcRed" />
+      <img src="./images/henry.png" class="quickadd" id="qcBlue" />
+      <img src="./images/eraser.png" class="quickadd" id="qErase" />
+      <img src="./images/nuke.png" class="quickadd" id="qClear" />
+      <img
+        src="./images/sidebar.png"
+        id="showhide"
+        style="visibility: visible"
+      />
+      <h3
+        id="theguy"
+        style="
+          color: rgb(255, 60, 0);
+          margin: 0px;
+          width: 600px;
+          visibility: visible;
+          position: fixed;
+        "
+      >
+        - Add robots and change drawing settings here!
+      </h3>
     </div>
-  </div>
-  <div id="infosidebar" style="position:absolute; width: 20%; background-color:rgb(23, 75, 99); padding:.5%; padding-top:20px; z-index: 100; min-width: 400px; display: none; right:0%; top:0%; bottom:0%;">
-    <h1 style="text-align: center;">How To Technology</h1>
-    <p>Click and Drag: Draw</p>
-    <p>Red/Blue Robot Buttons: Add a robot</p>
-    <p>Red/Blue Paint: Change line color to red/blue</p>
-    <p>Eraser/Pencil: Toggle drawing or erasing</p>
-    <p>Nuke: Clear all robots and drawings</p>
-    <p>Double tap robot: Change team number</p>
-    <br>
-    <p>Krypton Cougars logo: Open drawing settings</p>
-    <p>Drawing checkbox: Toggle drawing or erasing</p>
-    <p>Thickness slider: Change line weight</p>
-    <p>Alpha slider: Change line transparency</p>
-    <p>Red/Blue Color: Change line color to red/blue</p>
-    <p>Team Number: Sets a default team number</p>
-    <p>Clear Drawings: Removes all lines from the canvas</p>
-    <p>Clear Robots: Removes all robots from the canvas</p>
-    <br>
-    <p>1-7 Numerical Konami Code T#: ???</p>
-    <div id="secretinfo" style="background-color:rgb(141, 13, 56); padding:5px; border-radius:10px; visibility:hidden;">
-      <h2 style="text-align:center">Konami Code Functions</h2>
-      <p>If you're smart enough to unlock this, you probably don't need an explanation for HSV and Random Color</p>
-      <p>Add Custom Robot: Adds a robot with your set color</p>
-      <p>Add Random Robot: Adds a robot with a random color</p>
-      <p>Crazy Draw: Randomizes all line settings for every line segment, also has a button</p>
-      <p>Objectively Better Color Scheme: Made out of spite because someone wanted the robot buttons to be orange for some ungodly reason</p>
-    </div> 
-  </div>
-  <div style="width: 100%; height:100%;position:fixed;top:0" id="coolestdivever">
-    <div class="container" id="robotcontaner" style="z-index:2000;">
-      <img src="./images/RapidReactField_sm.png" class="bg" id="bgimg" style="z-index: 0;"/>
-      <!--<h1 style="position:absolute; text-align: center; top: 45%; width:80%;">Draw Stuffs!</h1>-->
+    <div
+      id="thebg"
+      style="
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        opacity: 0.35;
+        background-color: black;
+      "
+    ></div>
+    <div
+      id="promp"
+      style="
+        width: 300px;
+        height: 100px;
+        background-color: brown;
+        border: 5px solid orangered;
+        border-radius: 20px;
+        opacity: 1;
+        z-index: 1001;
+        top: 50%;
+        left: 50%;
+        position: fixed;
+        margin: -50px 0 0 -150px;
+      "
+    >
+      <h2
+        id="prompText"
+        style="text-align: center; color: white; margin-top: 13px"
+      >
+        Clear the canvas?
+      </h2>
+      <input
+        type="button"
+        class="button"
+        value="Yes"
+        id="prompYes"
+        style="
+          position: absolute;
+          bottom: 6px;
+          left: 6px;
+          right: 51%;
+          top: 55px;
+        "
+      />
+      <input
+        type="button"
+        class="button"
+        value="No"
+        id="prompNo"
+        style="
+          position: absolute;
+          bottom: 6px;
+          right: 6px;
+          left: 51%;
+          top: 55px;
+        "
+      />
     </div>
-  </div>
-  <script>
-    // register ServiceWorker, remember to use absolute path!
-    if (navigator.serviceWorker) {
-      navigator.serviceWorker.register('./sw.js')
-    }
+    <div
+      class="slidecontainer"
+      id="sidebar"
+      style="
+        position: absolute;
+        width: 20%;
+        background-color: rgb(73, 30, 30);
+        padding: 0.5%;
+        padding-top: 20px;
+        z-index: 100;
+        min-width: 400px;
+        display: none;
+        left: 0%;
+        top: 0%;
+        bottom: 0%;
+      "
+    >
+      <h1 style="text-align: center">Drawing Settings</h1>
+      <div style="margin-top: 2%; width: 100%">
+        <label for="drawingCbox">Drawing:</label
+        ><input type="checkbox" class="checkbox" id="drawingCbox" checked />
+      </div>
+      <div style="margin-top: 2%; width: 100%">
+        <label for="buttonCbox">Quick Access Buttons:</label
+        ><input type="checkbox" class="checkbox" id="buttonCbox" checked />
+      </div>
+      <div style="margin-top: 2%; width: 100%">
+        <label for="thickSlider">Thickness:</label
+        ><input
+          type="range"
+          min="1"
+          max="50"
+          value="5"
+          class="slider"
+          id="thickSlider"
+        />
+      </div>
+      <div style="margin-top: 2%; width: 100%">
+        <label for="alphaSlider">Alpha:</label
+        ><input
+          type="range"
+          min="1"
+          max="100"
+          value="100"
+          class="slider"
+          id="alphaSlider"
+        />
+      </div>
+      <div style="margin-top: 2%; width: 100%">
+        <input
+          type="button"
+          class="button"
+          value="Red Color"
+          id="redb"
+          style="width: 48%"
+        />
+        <input
+          type="button"
+          class="button"
+          value="Blue Color"
+          id="blueb"
+          style="width: 48%"
+        />
+      </div>
+      <div style="margin-top: 2%; width: 100%">
+        <label for="chaos">Team Number:</label
+        ><input type="number" class="text" id="teamnumber" value="2539" />
+      </div>
+      <div style="margin-top: 2%; width: 100%">
+        <input
+          type="button"
+          class="button"
+          value="Add Red Robot"
+          id="roboR"
+          style="width: 48%"
+        />
+        <input
+          type="button"
+          class="button"
+          value="Add Blue Robot"
+          id="roboB"
+          style="width: 48%"
+        />
+      </div>
+      <div style="margin-top: 2%; width: 100%">
+        <input
+          type="button"
+          class="button"
+          value="Clear Drawings"
+          id="clearD"
+          style="width: 48%"
+        />
+        <input
+          type="button"
+          class="button"
+          value="Clear Robots"
+          id="clearR"
+          style="width: 48%"
+        />
+      </div>
+      <div
+        class="slidecontainer"
+        id="secretsidebar"
+        style="
+          width: 90%;
+          background-color: rgb(141, 13, 56);
+          padding: 5px;
+          z-index: 100;
+          margin: 10px;
+          display: none;
+          border-radius: 10px;
+        "
+      >
+        <h1 style="text-align: center">Konami Code</h1>
+        <div style="margin-top: 2%; width: 100%">
+          <input
+            type="button"
+            class="button"
+            value="Random Color!"
+            id="randcol"
+            style="width: 100%"
+          />
+        </div>
+        <div style="margin-top: 2%; width: 100%">
+          <label for="hueSlider">Hue:</label
+          ><input
+            type="range"
+            min="1"
+            max="360"
+            value="25"
+            class="slider"
+            id="hueSlider"
+          />
+        </div>
+        <div style="margin-top: 2%; width: 100%">
+          <label for="satSlider">Saturation:</label
+          ><input
+            type="range"
+            min="1"
+            max="100"
+            value="100"
+            class="slider"
+            id="satSlider"
+          />
+        </div>
+        <div style="margin-top: 2%; width: 100%">
+          <label for="valSlider">Value:</label
+          ><input
+            type="range"
+            min="1"
+            max="50"
+            value="50"
+            class="slider"
+            id="valSlider"
+          />
+        </div>
+        <div style="margin-top: 2%; width: 100%">
+          <input
+            type="button"
+            class="button"
+            value="Add Custom Robot"
+            id="roboC"
+            style="width: 48%"
+          />
+          <input
+            type="button"
+            class="button"
+            value="Add Random Robot"
+            id="roboRAND"
+            style="width: 48%"
+          />
+        </div>
+        <div style="margin-top: 2%; width: 100%">
+          <label for="chaos">Crazy Draw:</label
+          ><input type="checkbox" class="checkbox" id="chaos" />
+        </div>
+        <div style="margin-top: 2%; width: 100%">
+          <label for="spite">Objectively Better Color Scheme:</label
+          ><input type="checkbox" class="checkbox" id="spite" />
+        </div>
+      </div>
+    </div>
+    <div
+      id="infosidebar"
+      style="
+        position: absolute;
+        width: 20%;
+        background-color: rgb(23, 75, 99);
+        padding: 0.5%;
+        padding-top: 20px;
+        z-index: 100;
+        min-width: 400px;
+        display: none;
+        right: 0%;
+        top: 0%;
+        bottom: 0%;
+      "
+    >
+      <h1 style="text-align: center">How To Technology</h1>
+      <p>Click and Drag: Draw</p>
+      <p>Red/Blue Robot Buttons: Add a robot</p>
+      <p>Red/Blue Paint: Change line color to red/blue</p>
+      <p>Eraser/Pencil: Toggle drawing or erasing</p>
+      <p>Nuke: Clear all robots and drawings</p>
+      <p>Double tap robot: Change team number</p>
+      <br />
+      <p>Krypton Cougars logo: Open drawing settings</p>
+      <p>Drawing checkbox: Toggle drawing or erasing</p>
+      <p>Thickness slider: Change line weight</p>
+      <p>Alpha slider: Change line transparency</p>
+      <p>Red/Blue Color: Change line color to red/blue</p>
+      <p>Team Number: Sets a default team number</p>
+      <p>Clear Drawings: Removes all lines from the canvas</p>
+      <p>Clear Robots: Removes all robots from the canvas</p>
+      <br />
+      <p>1-7 Numerical Konami Code T#: ???</p>
+      <div
+        id="secretinfo"
+        style="
+          background-color: rgb(141, 13, 56);
+          padding: 5px;
+          border-radius: 10px;
+          visibility: hidden;
+        "
+      >
+        <h2 style="text-align: center">Konami Code Functions</h2>
+        <p>
+          If you're smart enough to unlock this, you probably don't need an
+          explanation for HSV and Random Color
+        </p>
+        <p>Add Custom Robot: Adds a robot with your set color</p>
+        <p>Add Random Robot: Adds a robot with a random color</p>
+        <p>
+          Crazy Draw: Randomizes all line settings for every line segment, also
+          has a button
+        </p>
+        <p>
+          Objectively Better Color Scheme: Made out of spite because someone
+          wanted the robot buttons to be orange for some ungodly reason
+        </p>
+      </div>
+    </div>
+    <div
+      style="width: 100%; height: 100%; position: fixed; top: 0"
+      id="coolestdivever"
+    >
+      <div class="container" id="robotcontaner" style="z-index: 2000">
+        <img
+          src="./images/ChargedUpField_sm.png"
+          class="bg"
+          id="bgimg"
+          style="z-index: 0"
+        />
+        <!--<h1 style="position:absolute; text-align: center; top: 45%; width:80%;">Draw Stuffs!</h1>-->
+      </div>
+    </div>
+    <script>
+      // register ServiceWorker, remember to use absolute path!
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.register("./sw.js");
+      }
 
-  // --- Application code here ---
-  </script>
-  <script src="./js/main.js"></script>
-</body>
-
+      // --- Application code here ---
+    </script>
+    <script src="./js/main.js"></script>
+  </body>
 </html>

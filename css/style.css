@@ -1,7 +1,8 @@
 body {
-  color:white;
+  color: white;
   user-select: none;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 /* Make content area fill the entire browser window */
@@ -12,7 +13,7 @@ html,
   margin: 0;
   padding: 0;
   width: 100%;
-  /* background: url(../images/RapidReactField_sm.png) no-repeat center center fixed;  */
+  /* background: url(../images/ChargedUpField_sm.png) no-repeat center center fixed;  */
   /* background-size: 100vw 100vh; */
   background-color: black;
 }
@@ -28,15 +29,15 @@ html,
 } */
 
 .bg {
-  left:0;
-  right:0;
-  top:0;
-  bottom:0;
-  max-width:100%;
-  max-height:100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  max-width: 100%;
+  max-height: 100%;
   margin: auto;
   overflow: auto;
-  position:fixed;
+  position: fixed;
   -o-object-fit: contain;
   object-fit: contain;
 }
@@ -53,43 +54,43 @@ html,
 
 .slidecontainer {
   width: 100%; /* Width of the outside container */
-  padding:3px;
+  padding: 3px;
 }
 
 label {
-  margin:10px 10px 10px 10px;
+  margin: 10px 10px 10px 10px;
   font-weight: bold;
-  font-size:larger;
+  font-size: larger;
 }
 
 .checkbox {
-  height:20px;
-  width:20px;
+  height: 20px;
+  width: 20px;
 }
 
 /* The slider itself */
 .slider {
-  -webkit-appearance: none;  /* Override default CSS styles */
+  -webkit-appearance: none; /* Override default CSS styles */
   appearance: none;
   width: 60%; /* Full-width */
   height: 15px; /* Specified height */
   background: #d3d3d3; /* Grey background */
   outline: none; /* Remove outline */
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-  transition: opacity .2s;
-  margin:0px 0px 0px 0px;
-  border-radius:10px;
+  -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
+  transition: opacity 0.2s;
+  margin: 0px 0px 0px 0px;
+  border-radius: 10px;
 }
 
 .button {
-  border-radius:10px;
-  height:40px;
-  background-color:tomato;
-  border-color:brown;
-  font-weight:bold;
-  font-size:medium;
-  color:black;
+  border-radius: 10px;
+  height: 40px;
+  background-color: tomato;
+  border-color: brown;
+  font-weight: bold;
+  font-size: medium;
+  color: black;
 }
 
 /* Mouse-over effects */
@@ -105,7 +106,7 @@ label {
   height: 25px; /* Slider handle height */
   background: #f73808;
   cursor: pointer; /* Cursor on hover */
-  border-radius:15px;
+  border-radius: 15px;
 }
 
 .slider::-moz-range-thumb {
@@ -116,42 +117,42 @@ label {
 }
 
 #showhide {
-  padding:5px; 
+  padding: 5px;
   border-radius: 40px;
-  background-color:black; 
+  background-color: black;
   border: 5px solid rgb(255, 60, 0);
-  width:115px;
+  width: 115px;
 }
 
 .quickadd {
-  padding:5px; 
+  padding: 5px;
   border-radius: 20px;
-  background-color:brown; 
+  background-color: brown;
   border: 5px solid tomato;
-  margin:0px 3px 3px 3px; 
-  width:40px; 
-  height:40px;
-  visibility:visible; 
-  display:inline;
+  margin: 0px 3px 3px 3px;
+  width: 40px;
+  height: 40px;
+  visibility: visible;
+  display: inline;
 }
 
 div[active="yes"] img[class="quickadd"] {
-  visibility:hidden;
+  visibility: hidden;
 }
 
 @media only screen and (max-width: 500px) {
   .quickadd {
-    visibility:hidden;
+    visibility: hidden;
   }
   #showhide {
-    width:70px;
-    height:70px;
+    width: 70px;
+    height: 70px;
   }
 }
 
 #showinfo {
-  padding:5px; 
+  padding: 5px;
   border-radius: 50%;
-  background-color:rgb(80, 150, 255); 
+  background-color: rgb(80, 150, 255);
   border: 5px solid rgb(128, 240, 255);
 }
